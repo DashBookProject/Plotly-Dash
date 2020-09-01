@@ -23,20 +23,19 @@ app = dash.Dash(__name__, external_stylesheets=stylesheets)
 app.layout = html.Div([
     html.Div(html.H4("Twitter Likes Analysis of Famous People", style={"text-align": "center"}), className="row"),
 
-    html.Div([
-        dcc.Graph(id="line-chart", figure={}),
-    ], className="row"),
+    html.Div(dcc.Graph(id="line-chart", figure={}),
+             className="row"),
 
     html.Div([
 
-        html.Div([
+        html.Div(
             dcc.Dropdown(id="my-dropdown", options=[{'label': x, 'value': x} for x in sorted(df['name'].unique())],
                          value=["taylorswift13", "cristiano", "jtimberlake"], multi=True),
-        ], className="three columns"),
+            className="three columns"),
 
-        html.Div([
+        html.Div(
             html.A(id="my-link", children="Click here to Visit Twitter", href="https://twitter.com/explore", target="_blank"),
-        ], className="two columns")
+            className="two columns")
 
     ], className="row"),
 ])
