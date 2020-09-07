@@ -21,7 +21,7 @@ stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=stylesheets)
 
 app.layout = html.Div([
-    html.Div(html.H4("Twitter Likes Analysis of Famous People",
+    html.Div(html.H1("Twitter Likes Analysis of Famous People",
                      style={"text-align":"center"}),
              className="row"),
 
