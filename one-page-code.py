@@ -22,7 +22,7 @@ app = dash.Dash(__name__, external_stylesheets=stylesheets)
 
 app.layout = html.Div([
     html.Div(html.H1("Twitter Likes Analysis of Famous People",
-                     style={"text-align":"center"}),
+                     style={"textAlign":"center"}),
              className="row"),
 
     html.Div(dcc.Graph(id="line-chart", figure={}),
