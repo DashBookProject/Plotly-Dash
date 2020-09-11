@@ -6,7 +6,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 
-# Preparing your data for usage *********************************************
+# Preparing your data for usage *******************************************
 
 df = pd.read_csv("tweets.csv")
 df["name"] = pd.Series(df["name"]).str.lower()
@@ -15,7 +15,7 @@ df = df.groupby(['date_time',"name"])[["number_of_likes",
                                       "number_of_shares"]].mean().astype(int)
 df = df.reset_index()
 
-# App Layout ****************************************************************
+# App Layout **************************************************************
 
 stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=stylesheets)
@@ -46,7 +46,7 @@ app.layout = html.Div([
 ])
 
 
-# Callbacks *****************************************************************
+# Callbacks ***************************************************************
 @app.callback(
     Output(component_id="line-chart", component_property="figure"),
     [Input(component_id="my-dropdown", component_property="value")],
