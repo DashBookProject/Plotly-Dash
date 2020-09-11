@@ -10,7 +10,7 @@ from dash.dependencies import Input, Output
 
 df = pd.read_csv("tweets.csv")
 df["name"] = pd.Series(df["name"]).str.lower()
-df["date_time"] = pd.to_datetime(df['date_time']).dt.date
+df["date_time"] = pd.to_datetime(df['date_time'])
 df = df.groupby(['date_time',"name"])[["number_of_likes",
                                       "number_of_shares"]].mean().astype(int)
 df = df.reset_index()
