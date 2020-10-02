@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -12,9 +12,6 @@ import pathlib
 import plotly.graph_objects as go
 
 
-
-from utilities import navbar, footer, asset_allocation_text, backtesting_text
-
 FONT_AWESOME = "https://use.fontawesome.com/releases/v5.10.2/css/all.css"
 
 external_stylesheets = [dbc.themes.SPACELAB, FONT_AWESOME]
@@ -23,10 +20,11 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 # set relative path
 PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("./assets").resolve()
+DATA_PATH = PATH.joinpath("./data").resolve()
 
 #  make dataframe from  spreadsheet:
 df = pd.read_excel(DATA_PATH.joinpath("historic.xlsx"))
+
 
 MAX_YR = df.Year.max()
 MIN_YR = df.Year.min()
@@ -39,8 +37,10 @@ df = (
 )
 
 
-
-#####################  Tables   #####################################
+"""
+==========================================================================
+Tables
+"""
 
 
 total_returns_table = html.Div(
@@ -63,8 +63,7 @@ total_returns_table = html.Div(
                 "maxHeight": "425px",
             },
             style_cell={"textAlign": "right", "font-family": "arial"},
-            style_cell_conditional=[{"if": {"column_id": "Year"},
-                                     "type": "text"}],
+            style_cell_conditional=[{"if": {"column_id": "Year"}, "type": "text"}],
         )
     ]
 )
@@ -109,8 +108,7 @@ def make_summary_table(dff):
                 [
                     html.Th(" "),
                     html.Th(" "),
-                    html.Th(
-                     f"Annual returns (CAGR) from {start_yr} to {end_yr}"),
+                    html.Th(f"Annual returns (CAGR) from {start_yr} to {end_yr}"),
                     html.Th(f"Worst Year from {start_yr} to {end_yr}"),
                 ]
             )
@@ -120,8 +118,7 @@ def make_summary_table(dff):
         [
             html.Td("Cash"),
             html.Td(
-                html.I(className="fa fa-money-bill-alt",
-                       style={"font-size": "150%"})
+                html.I(className="fa fa-money-bill-alt", style={"font-size": "150%"})
             ),
             html.Td(cagr(dff["All_Cash"])),
             html.Td(worst(dff, "3-mon T.Bill")),
@@ -134,8 +131,7 @@ def make_summary_table(dff):
     row2 = html.Tr(
         [
             html.Td("Bonds"),
-            html.Td(html.I(className="fa fa-handshake",
-                           style={"font-size": "150%"})),
+            html.Td(html.I(className="fa fa-handshake", style={"font-size": "150%"})),
             html.Td(cagr(dff["All_Bonds"])),
             html.Td(worst(dff, "10yr T.Bond")),
         ],
@@ -143,8 +139,7 @@ def make_summary_table(dff):
     row3 = html.Tr(
         [
             html.Td("Stocks"),
-            html.Td(html.I(className="fa fa-industry ",
-                           style={"font-size": "150%"})),
+            html.Td(html.I(className="fa fa-industry ", style={"font-size": "150%"})),
             html.Td(cagr(dff["All_Stocks"])),
             html.Td(worst(dff, "S&P 500")),
         ],
@@ -152,14 +147,12 @@ def make_summary_table(dff):
     row4 = html.Tr(
         [
             html.Td("Inflation"),
-            html.Td(html.I(className="fa fa-ambulance",
-                           style={"font-size": "150%"})),
+            html.Td(html.I(className="fa fa-ambulance", style={"font-size": "150%"})),
             html.Td(cagr(dff["Inflation_only"])),
             html.Td(" "),
         ],
     )
-    table_body = [html.Tbody([row1, row2, row3, row4],
-                             className="text-center")]
+    table_body = [html.Tbody([row1, row2, row3, row4], className="text-center")]
     summary_table = dbc.Table(
         table_header + table_body,
         bordered=True,
@@ -169,28 +162,24 @@ def make_summary_table(dff):
     return summary_table
 
 
-datasource_text = dcc.Markdown(
-    """    
-    [Data source:](http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html)
-    Historical Returns on Stocks, Bonds and Bills from NYU Stern School of Business
-    """
-)
-
-
-######################  Figures  ####################################
+"""
+==========================================================================
+Figures
+"""
 
 #######  Pie chart
 def make_pie(slider_input, title):
     colors = ["#3cb521", "#f5b668", "#3399f3"]
     fig = go.Figure(
         data=[
-            go.Pie(labels=["Cash", "Bonds", "Stocks"],
-                   values=slider_input,
-                   textinfo="label+percent",
-                   textposition="inside",
-                   marker=dict(colors=colors),
-                   sort=False
-                   )
+            go.Pie(
+                labels=["Cash", "Bonds", "Stocks"],
+                values=slider_input,
+                textinfo="label+percent",
+                textposition="inside",
+                marker=dict(colors=colors),
+                sort=False,
+            )
         ]
     )
     fig.update_layout(
@@ -203,7 +192,7 @@ def make_pie(slider_input, title):
     return fig
 
 
-#########  Line chart
+# =======  Line chart
 def make_returns_chart(dff):
     start = dff.loc[1, "Year"]
     x = dff["Year"]
@@ -264,22 +253,87 @@ def make_returns_chart(dff):
     return fig
 
 
-#####################  Make Tabs  ###################################
+"""
+==========================================================================
+Markdown Text
+"""
 
-#######  Play tab components
+datasource_text = dcc.Markdown(
+    """    
+    [Data source:](http://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histretSP.html)
+    Historical Returns on Stocks, Bonds and Bills from NYU Stern School of
+    Business
+    """
+)
+
+asset_allocation_text = dcc.Markdown(
+    """
+
+> **Asset allocation** is One of the main factors that determines your 
+  portfolio returns and volatility over time.  Play with the app and see
+  for yourself!
+
+> See "My Portfolio",   the dashed line in the graph, and watch how
+  your results change as you move the sliders to select different asset
+  allocations. You can enter different starting times and dollar amounts 
+  too.
+"""
+)
+
+
+backtesting_text = dcc.Markdown(
+    """
+
+    Past performance certainly does not determine future results.... but you can still
+    learn a lot by reviewing how various asset classes have performed over time.
+
+    Use the sliders to change the asset allocation (how much you invest in cash vs
+    bonds vs stock) and see how this affects your returns.
+
+    Note that the results shown in "My Portfolio" assumes rebalancing was done at
+    the beginning of every year.  Also, this information is based on the S&P 500 index
+    as a proxy for "stocks", the 10 year US Treasury Bond for "bonds" and the 3 month
+    US Treasury Bill for "cash."  Your results of course,  would be different based
+    on your actual holdings.
+
+    This is intended to help you determine your investment philosophy and understand
+    what sort of risks and returns you might see for each asset category.
+
+    The  data is from [Aswath Damodaran](http://people.stern.nyu.edu/adamodar/New_Home_Page/home.htm)
+    who teaches  corporate finance and valuation at the Stern School of Business
+    at New York University.
+
+    Check out his excellent on-line course in
+    [Investment Philosophies.](http://people.stern.nyu.edu/adamodar/New_Home_Page/webcastinvphil.htm)
+    """
+)
+
+
+footer = html.Div(
+    dcc.Markdown(
+        """
+         This information is intended solely as general information for educational
+        and entertainment purposes only and is not a substitute for professional advice and
+        services from qualified financial services providers familiar with your financial
+        situation.    Questions?  Suggestions? Please don't hesitate to get in touch:
+          [Email](mailto:awardapps@fastmail.com?subject=cool)
+        """
+    ),
+    className="p-2 pl-5 pr-5 bg-primary text-white",
+)
+
+
+"""
+==========================================================================
+Make Tabs
+"""
+
+
+# =======Play tab components
 
 asset_allocation_card = html.Div(
     dbc.Card(
-        dbc.CardBody(
-            html.Div(
-                html.Div(asset_allocation_text, className="ml-3 mt-2"),
-                style={
-                    "border-left": "solid",
-                    "border-color": "#446e9b",
-                    "border-left-width": "10px",
-                },
-            )
-        ),
+        dbc.CardBody(html.Div(html.Div(asset_allocation_text, className="ml-3 mt-2"),)),
         className="mt-4",
     )
 )
@@ -288,8 +342,7 @@ slider_card = html.Div(
     dbc.Card(
         dbc.CardBody(
             [
-                html.H4("First set cash allocation %:",
-                        className="card-title"),
+                html.H4("First set cash allocation %:", className="card-title"),
                 dcc.Slider(
                     id="cash",
                     marks={i: f"{i}%" for i in range(0, 101, 10)},
@@ -301,10 +354,8 @@ slider_card = html.Div(
                     persistence=True,
                     persistence_type="session",
                 ),
-                html.H4("Then set stock allocation % ",
-                        className="card-title mt-3",),
-                html.Div("(The rest will be bonds)",
-                         className="card-title"),
+                html.H4("Then set stock allocation % ", className="card-title mt-3",),
+                html.Div("(The rest will be bonds)", className="card-title"),
                 dcc.Slider(
                     id="stock_bond",
                     marks={i: f"{i}%" for i in range(0, 91, 10)},
@@ -342,13 +393,12 @@ time_period_card = html.Div(
             dcc.RadioItems(
                 id="select_timeframe",
                 options=[
-                    {"label": "2007-2008 Great Financial Crisis", "value": '2007'},
-                    {"label": "2000 Dotcom Bubble peak", "value": '1999'},
-                    {"label": "1970s Energy Crisis", "value": '1970'},
-                    {"label": "1929 start of Great Depression", "value": '1929'},
-                    {"label": "1928-2019", "value": '1928'},
+                    {"label": "2007-2008 Great Financial Crisis", "value": "2007"},
+                    {"label": "2000 Dotcom Bubble peak", "value": "1999"},
+                    {"label": "1970s Energy Crisis", "value": "1970"},
+                    {"label": "1929 start of Great Depression", "value": "1929"},
+                    {"label": "1928-2019", "value": "1928"},
                 ],
-
                 labelStyle={"display": "block"},
                 labelClassName="m-2",
                 inputClassName="mr-3",
@@ -423,7 +473,7 @@ amount_input_card = html.Div(
     )
 )
 
-#  Results Tab components
+# =====  Results Tab components
 
 results_card = html.Div(
     dbc.Card(
@@ -447,7 +497,7 @@ data_source_card = html.Div(
     )
 )
 
-#########  Learn Tab  Components
+# ========= Learn Tab  Components
 learn_card = html.Div(
     dbc.Card(
         [
@@ -459,7 +509,7 @@ learn_card = html.Div(
     )
 )
 
-######## Build tabs
+##==========Build tabs
 tabs = html.Div(
     dbc.Tabs(
         [
@@ -471,11 +521,13 @@ tabs = html.Div(
             ),
             dbc.Tab(
                 [
-                    amount_input_card,
+                    asset_allocation_text,
                     slider_card,
+                    amount_input_card,
                     inflation_checkbox,
                     time_period_card,
-                    asset_allocation_card,
+
+
                 ],
                 tab_id="tab-2",
                 label="Play",
@@ -494,26 +546,24 @@ tabs = html.Div(
     style={"minHeight": "800px"},
 )
 
-########################  Main Layout     ###########################
+"""
+===========================================================================
+Main Layout
+"""
 
 app.layout = dbc.Container(
     [
-        navbar,
         dbc.Row(
             dbc.Col(
-                html.H4(
+                html.H2(
                     "Asset Allocation Visualizer",
-                    className="text-center bg-light m-2 p-2",
+                    className="text-center bg-primary text-white p-2",
                 ),
             )
         ),
         dbc.Row(
             [
-                dbc.Col(
-                    tabs,
-                    width={"size": 5, "order": 1},
-                    className="mt-4 border",
-                ),
+                dbc.Col(tabs, width={"size": 5, "order": 1}, className="mt-4 border",),
                 dbc.Col(
                     [
                         dcc.Graph(id="pie_allocation", className="mb-2"),
@@ -533,8 +583,11 @@ app.layout = dbc.Container(
 )
 
 
+"""
+==========================================================================
+Calculations for  backtest results, cagr and worst periods
+"""
 
-####### functions for Backtest results, cagr and worst periods ##############
 
 def backtest(stocks, cash, start_bal, nper, start_yr, pmt):
     """ calculates the investment returns for user selected asset allocation,
@@ -584,7 +637,7 @@ def backtest(stocks, cash, start_bal, nper, start_yr, pmt):
     columns = ["Cash", "Stocks", "Bonds", "Total"]
     dff[columns] = dff[columns].round(0)
 
-    ### create columns for when portfolio is all cash, all bonds or  all stocks,
+    # create columns for when portfolio is all cash, all bonds or  all stocks,
     #   include inflation too
     #
     # create new df that starts in yr 1 rather than yr 0
@@ -623,9 +676,11 @@ def worst(dff, asset):
     return f"{worst_yr}:  {worst_yr_loss:.1%}"
 
 
+"""
+==========================================================================
+Callbacks
+"""
 
-
-#######################    Callbacks     #############################
 
 @app.callback(
     Output("pie_allocation", "figure"),
@@ -671,15 +726,12 @@ def update_stock_slider(cash, initial_stock_value):
     return max_slider, marks_slider, stocks
 
 
-
-
-
 @app.callback(
     [Output("planning_time", "value"), Output("start_yr", "value")],
     [Input("select_timeframe", "value")],
 )
 def update_timeframe(selected_yr):
-    timeframe = {"2007":13, "1999": 10, "1970": 10, "1929":20, "1928":98}
+    timeframe = {"2007": 13, "1999": 10, "1970": 10, "1929": 20, "1928": 98}
     return timeframe[selected_yr], selected_yr
 
 
@@ -736,6 +788,3 @@ def update_totals(stocks, cash, start_bal, planning_time, start_yr, inflation):
 
 if __name__ == "__main__":
     app.run_server(debug=True)
-
-
-
