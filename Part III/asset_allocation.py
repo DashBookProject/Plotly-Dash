@@ -10,7 +10,6 @@ import dash_table.FormatTemplate as FormatTemplate
 import pandas as pd
 import pathlib
 import plotly.graph_objects as go
-import plotly_express as px
 
 
 FONT_AWESOME = "https://use.fontawesome.com/releases/v5.10.2/css/all.css"
@@ -168,7 +167,7 @@ def make_summary_table(dff):
 Figures
 """
 
-######  Pie chart
+#######  Pie chart
 def make_pie(slider_input, title):
     colors = ["#3cb521", "#f5b668", "#3399f3"]
     fig = go.Figure(
@@ -186,112 +185,17 @@ def make_pie(slider_input, title):
     fig.update_layout(
         title_text=title,
         title_x=0.5,
-        margin=dict(b=25, t=75, l=35, r=25),
+        margin=go.layout.Margin(b=25, t=75, l=35, r=25),
         height=375,
         paper_bgcolor="whitesmoke",
     )
     return fig
-
-def make_pie(slider_input, title):
-    fig = px.pie(
-            names=["Cash", "Bonds", "Stocks"],
-            values = slider_input,
-            color_discrete_map={'Cash': "#3cb521",
-                                'Bonds': "#f5b668",
-                                'Stocks': "#3399f3"},
-            title=title,
-            height=375,
-            )
-    fig.update_traces(textposition='inside', textinfo='percent+label',
-                      hovertemplate=None, hoverinfo='skip' )
-
-    fig.update_layout(
-         title_x=0.5,
-         margin=dict(b=25, t=75, l=35, r=25),
-         paper_bgcolor="whitesmoke",
-     )
-    return fig
-
-def make_pie(slider_input, title):
-    colors = ["#3cb521", "#f5b668", "#3399f3"]
-    fig = go.Figure(
-        data=[
-            go.Pie(
-                labels=["Cash", "Bonds", "Stocks"],
-                values=slider_input,
-                textinfo="label+percent",
-                textposition="inside",
-                marker=dict(colors=colors),
-                sort=False,
-            )
-        ]
-    )
-    fig.update_layout(
-        title_text=title,
-        title_x=0.5,
-        margin=dict(b=25, t=75, l=35, r=25),
-        height=375,
-        paper_bgcolor="whitesmoke",
-    )
-    return fig
-
-
-def make_pie(slider_input, title):
-    fig = px.pie(
-        names=["Cash", "Bonds", "Stocks"],
-        values=slider_input,
-        color_discrete_map={"Cash": "#3cb521", "Bonds": "#f5b668", "Stocks": "#3399f3"},
-        title=title,
-        height=375,
-    )
-    fig.update_traces(
-        textposition="inside",
-        textinfo="percent+label",
-        hovertemplate=None,
-        hoverinfo="skip",
-    )
-
-    fig.update_layout(
-        title_x=0.5, margin=dict(b=25, t=75, l=35, r=25), paper_bgcolor="whitesmoke",
-    )
-    return fig
-
 
 
 # =======  Line chart
-# def make_returns_chart(dff):
-#     start = dff.loc[1, "Year"]
-#     x = dff["Year"]
-#     y= ["All_Cash", 'All_Bonds', 'All_Stocks', 'Total', 'Inflation_only']
-#     name= ["All Cash", 'All Bonds', 'All Stocks', 'My Portfolio', 'Inflation']
-#     colors = ["#3cb521", "#f5b668", "#3399f3", "black", "#cd0200"]
-#     labels = dict(zip(y,name))
-#     color_discrete_map = dict(zip(y,colors))
-#     print(labels)
-#     yrs = dff["Year"].size - 1
-#     title = f"Returns for {yrs} years starting {start}"
-#     dtick = 1 if yrs < 16 else 2 if yrs in range(16, 30) else 5
-#
-#
-#
-#     fig = px.line(dff, x=x, y=y, labels=labels, title=title, color_discrete_map=color_discrete_map)
-#     print(fig)
-#     fig.update_layout(
-#          template="none",
-#          showlegend=True,
-#          legend=dict(x=0.01, y=0.99),
-#          height=400,
-#          margin=dict(l=40, r=10, t=60, b=30),
-#          yaxis=dict(tickprefix="$", fixedrange=True),
-#          xaxis=dict(title="Year Ended", fixedrange=True, dtick=dtick)
-#     )
-#     return fig
-
-
-
-
 def make_returns_chart(dff):
     start = dff.loc[1, "Year"]
+    x = dff["Year"]
     yrs = dff["Year"].size - 1
     title = f"Returns for {yrs} years starting {start}"
     dtick = 1 if yrs < 16 else 2 if yrs in range(16, 30) else 5
@@ -299,15 +203,12 @@ def make_returns_chart(dff):
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
-            x=dff["Year"],
-            y=dff["All_Cash"],
-            name="All Cash",
-            marker=dict(color="#3cb521")
+            x=x, y=dff["All_Cash"], name="All Cash", marker=dict(color="#3cb521")
         )
     )
     fig.add_trace(
         go.Scatter(
-            x=dff["Year"],
+            x=x,
             y=dff["All_Bonds"],
             name="All Bonds (10yr T.Bonds)",
             marker=dict(color="#d47500"),
@@ -315,7 +216,7 @@ def make_returns_chart(dff):
     )
     fig.add_trace(
         go.Scatter(
-            x=dff["Year"],
+            x=x,
             y=dff["All_Stocks"],
             name="All Stocks (S&P500)",
             marker=dict(color="#3399f3"),
@@ -323,7 +224,7 @@ def make_returns_chart(dff):
     )
     fig.add_trace(
         go.Scatter(
-            x=dff["Year"],
+            x=x,
             y=dff["Total"],
             name="My Portfolio",
             marker=dict(color="black"),
@@ -332,9 +233,10 @@ def make_returns_chart(dff):
     )
     fig.add_trace(
         go.Scatter(
-            x=dff["Year"],
+            x=x,
             y=dff["Inflation_only"],
             name="Inflation",
+            visible=True,
             marker=dict(color="#cd0200"),
         )
     )
@@ -349,65 +251,6 @@ def make_returns_chart(dff):
         xaxis=dict(title="Year Ended", fixedrange=True, dtick=dtick),
     )
     return fig
-
-
-
-
-
-
-
-
-    # fig = go.Figure()
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=x, y=dff["All_Cash"], name="All Cash", marker=dict(color="#3cb521")
-    #     )
-    # )
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=x,
-    #         y=dff["All_Bonds"],
-    #         name="All Bonds (10yr T.Bonds)",
-    #         marker=dict(color="#d47500"),
-    #     )
-    # )
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=x,
-    #         y=dff["All_Stocks"],
-    #         name="All Stocks (S&P500)",
-    #         marker=dict(color="#3399f3"),
-    #     )
-    # )
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=x,
-    #         y=dff["Total"],
-    #         name="My Portfolio",
-    #         marker=dict(color="black"),
-    #         line=dict(width=6, dash="dot"),
-    #     )
-    # )
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=x,
-    #         y=dff["Inflation_only"],
-    #         name="Inflation",
-    #         visible=True,
-    #         marker=dict(color="#cd0200"),
-    #     )
-    # )
-    # fig.update_layout(
-    #     title=title,
-    #     template="none",
-    #     showlegend=True,
-    #     legend=dict(x=0.01, y=0.99),
-    #     height=400,
-    #     margin=dict(l=40, r=10, t=60, b=30),
-    #     yaxis=dict(tickprefix="$", fixedrange=True),
-    #     xaxis=dict(title="Year Ended", fixedrange=True, dtick=dtick),
-    # )
-    # return fig
 
 
 """
@@ -572,8 +415,7 @@ amount_input_card = html.Div(
         [
             dbc.InputGroup(
                 [
-                    dbc.InputGroupAddon("Start Amount $ :",
-                                        addon_type="prepend"),
+                    dbc.InputGroupAddon("Start Amount $ :", addon_type="prepend"),
                     dbc.Input(
                         id="starting_amount",
                         placeholder="$",
@@ -588,8 +430,7 @@ amount_input_card = html.Div(
             ),
             dbc.InputGroup(
                 [
-                    dbc.InputGroupAddon("Number of Years:",
-                                        addon_type="prepend"),
+                    dbc.InputGroupAddon("Number of Years:", addon_type="prepend"),
                     dbc.Input(
                         id="planning_time",
                         placeholder="#yrs",
@@ -604,8 +445,7 @@ amount_input_card = html.Div(
             ),
             dbc.InputGroup(
                 [
-                    dbc.InputGroupAddon("Start Year:",
-                                        addon_type="prepend"),
+                    dbc.InputGroupAddon("Start Year:", addon_type="prepend"),
                     dbc.Input(
                         id="start_yr",
                         placeholder=f"{MIN_YR} to {MAX_YR}",
@@ -621,8 +461,7 @@ amount_input_card = html.Div(
             ),
             dbc.InputGroup(
                 [
-                    dbc.InputGroupAddon("My Portfolio Results: ",
-                                        addon_type="prepend"),
+                    dbc.InputGroupAddon("My Portfolio Results: ", addon_type="prepend"),
                     dbc.Input(id="results", type="text", disabled=True,),
                 ],
                 className="mb-3",
@@ -724,8 +563,7 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             [
-                dbc.Col(tabs, width={"size": 5, "order": 1},
-                        className="mt-4 border"),
+                dbc.Col(tabs, width={"size": 5, "order": 1}, className="mt-4 border",),
                 dbc.Col(
                     [
                         dcc.Graph(id="pie_allocation", className="mb-2"),
