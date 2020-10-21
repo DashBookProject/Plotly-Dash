@@ -10,8 +10,9 @@ from pandas_datareader import wb
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-indicators = ['pop % using internet', 'parliament seats % held by women',
-              'CO2 emissions (kt)']
+indicators = {'IT.NET.USER.ZS':'Pop % using internet',
+              'SG.GEN.PARL.ZS':'Parliament seats % held by women',
+              'EN.ATM.CO2E.KT':'CO2 emissions (kt)'}
 
 # get country name and ISO id for mapping on choropleth
 countries = wb.get_countries()
@@ -24,19 +25,14 @@ countries = countries.rename(columns={'name': 'country'})
 
 def update_wb_data():
     # Retrieve specific world bank data from API
-    df = wb.download(indicator=['IT.NET.USER.ZS','SG.GEN.PARL.ZS',
-                                'EN.ATM.CO2E.KT'],
+    df = wb.download(indicator=(list(indicators)),
                      country=countries['iso3c'], start=2005, end=2016)
     df = df.reset_index()
     df.year = df.year.astype(int)
 
     # Add country ISO3 id to main df
     df = pd.merge(df, countries, on='country')
-    df = df.rename(
-            columns={'IT.NET.USER.ZS':'pop % using internet',
-                     'SG.GEN.PARL.ZS':'parliament seats % held by women',
-                     'EN.ATM.CO2E.KT':'CO2 emissions (kt)'}
-    )
+    df = df.rename(columns=indicators)
     return df
 
 
@@ -54,21 +50,22 @@ app.layout = dbc.Container(
         ),
         dbc.Row(
             dbc.Col([
-                dbc.Label('World Bank Indicator to map:',
-                          className="font-weight-bold",
-                          style={'textDecoration':'underline',
-                                 'fontSize':20}
-                          ),
+                dbc.Label(
+                    'Select Data Set:',
+                    className="font-weight-bold",
+                    style={'textDecoration':'underline', 'fontSize':20}
+                ),
                 dcc.RadioItems(
                     id='radio-indicator',
-                    options=[{'label': i, 'value': i} for i in indicators],
-                    value='pop % using internet',
+                    options=[{'label': i, 'value': i} for i in indicators.values()],
+                    value=list(indicators.values())[0],
+                    inputClassName='mr-2'
                 ),
             ], width=4)
         ),
         dbc.Row([
             dbc.Col([
-                dbc.Label('Year to map:',
+                dbc.Label('Select Years:',
                           className="font-weight-bold",
                           style={'textDecoration':'underline',
                                  'fontSize':20}
@@ -78,17 +75,16 @@ app.layout = dbc.Container(
                     min=2005,
                     max=2016,
                     step=1,
-                    value=[2005,2006],
+                    value=[2005, 2006],
                     marks={
-                        2005:"2005", 2006:"06'", 2007:"07'",
-                        2008:"08'", 2009:"09'", 2010:"10'",
-                        2011:"11'", 2012:"12'", 2013:"13'",
-                        2014:"14'", 2015:"15'", 2016:"2016"
+                        2005: "2005", 2006: "'06", 2007: "'07",
+                        2008: "'08", 2009: "'09", 2010: "'10",
+                        2011: "'11", 2012: "'12", 2013: "'13",
+                        2014: "'14", 2015: "'15", 2016: "2016"
                     }
                 ),
-                html.Br(),
                 dbc.Button(id='my-button', children='Submit', n_clicks=0,
-                           color="primary", className="mr-1"),
+                           color="primary", className="mt-4"),
             ], width=6),
         ]),
 
@@ -99,8 +95,8 @@ app.layout = dbc.Container(
 
 
 @app.callback(
-    Output(component_id='storage', component_property='data'),
-    Input(component_id='timer', component_property='n_intervals')
+    Output('storage', 'data'),
+    Input('timer', 'n_intervals')
 )
 def store_data(n_time):
     dataframe = update_wb_data()
@@ -108,11 +104,11 @@ def store_data(n_time):
 
 
 @app.callback(
-    Output(component_id='my-choropleth', component_property='figure'),
-    Input(component_id='my-button', component_property='n_clicks'),
-    State(component_id='years-range', component_property='value'),
-    State(component_id='radio-indicator', component_property='value'),
-    State(component_id='storage', component_property='data')
+    Output('my-choropleth', 'figure'),
+    Input('my-button', 'n_clicks'),
+    State('years-range', 'value'),
+    State('radio-indicator', 'value'),
+    State('storage', 'data')
 )
 def update_graph(n_clicks, years_chosen, indct_chosen, stored_dataframe):
     dff = pd.DataFrame.from_records(stored_dataframe)
@@ -127,7 +123,7 @@ def update_graph(n_clicks, years_chosen, indct_chosen, stored_dataframe):
         fig = px.choropleth(dff, locations='iso3c', color=indct_chosen,
                             scope="world",
                             hover_data={'iso3c':False, 'country':True},
-                            labels={"parliament seats % held by women":
+                            labels={indicators['SG.GEN.PARL.ZS']:
                                     "% parliament women"}
                             )
         fig.update_layout(geo={'projection': {'type': 'natural earth'}},
@@ -139,7 +135,7 @@ def update_graph(n_clicks, years_chosen, indct_chosen, stored_dataframe):
         fig = px.choropleth(dff, locations='iso3c', color=indct_chosen,
                             scope="world",
                             hover_data={'iso3c':False, 'country':True},
-                            labels={"parliament seats % held by women":
+                            labels={indicators['SG.GEN.PARL.ZS']:
                                     "% parliament women"}
                             )
         fig.update_layout(geo={'projection': {'type': 'natural earth'}},
