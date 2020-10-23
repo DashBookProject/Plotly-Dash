@@ -10,7 +10,7 @@ from pandas_datareader import wb
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-indicators = {'IT.NET.USER.ZS':'Pop % using internet',
+indicators = {'IT.NET.USER.ZS':'pop % using internet',
               'SG.GEN.PARL.ZS':'Parliament seats % held by women',
               'EN.ATM.CO2E.KT':'CO2 emissions (kt)'}
 
