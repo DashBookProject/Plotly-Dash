@@ -28,10 +28,13 @@ countries = countries.rename(columns={"name": "country"})
 def update_wb_data():
     # Retrieve specific world bank data from API
     df = wb.download(
-        indicator=(list(indicators)), country=countries["iso3c"], 
+        indicator=(list(indicators)), country=countries["iso3c"],
         start=2005, end=2016
     )
+    print(df[:3])
     df = df.reset_index()
+    print(df[:3])
+
     df.year = df.year.astype(int)
 
     # Add country ISO3 id to main df
