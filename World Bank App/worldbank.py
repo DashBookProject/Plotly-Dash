@@ -11,7 +11,7 @@ from pandas_datareader import wb
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 indicators = {
-    "IT.NET.USER.ZS": "pop % using internet",
+    "IT.NET.USER.ZS": "Individuals using the Internet (% of population)",
     "SG.GEN.PARL.ZS": "Parliament seats % held by women",
     "EN.ATM.CO2E.KT": "CO2 emissions (kt)",
 }
@@ -148,7 +148,8 @@ def update_graph(n_clicks, years_chosen, indct_chosen, stored_dataframe):
             color=indct_chosen,
             scope="world",
             hover_data={"iso3c": False, "country": True},
-            labels={indicators["SG.GEN.PARL.ZS"]: "% parliament women"},
+            labels={indicators["SG.GEN.PARL.ZS"]: "% parliament women",
+                    indicators["IT.NET.USER.ZS"]: "pop % using internet"},
         )
         fig.update_layout(
             geo={"projection": {"type": "natural earth"}},
@@ -164,7 +165,8 @@ def update_graph(n_clicks, years_chosen, indct_chosen, stored_dataframe):
             color=indct_chosen,
             scope="world",
             hover_data={"iso3c": False, "country": True},
-            labels={indicators["SG.GEN.PARL.ZS"]: "% parliament women"},
+            labels={indicators["SG.GEN.PARL.ZS"]: "% parliament women",
+                    indicators["IT.NET.USER.ZS"]: "pop % using internet"},
         )
         fig.update_layout(
             geo={"projection": {"type": "natural earth"}},
