@@ -129,11 +129,11 @@ def store_data(n_time):
 @app.callback(
     Output("my-choropleth", "figure"),
     Input("my-button", "n_clicks"),
+    Input("storage", "data"),
     State("years-range", "value"),
     State("radio-indicator", "value"),
-    State("storage", "data"),
 )
-def update_graph(n_clicks, years_chosen, indct_chosen, stored_dataframe):
+def update_graph(n_clicks, stored_dataframe, years_chosen, indct_chosen):
     dff = pd.DataFrame.from_records(stored_dataframe)
 
     if years_chosen[0] != years_chosen[1]:
