@@ -1,8 +1,8 @@
-import dash
+import dash  # Dash version==1.16.0 and Plotly version==4.10.0 
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-import plotly.express as px
+import plotly.express as px 
 import dash_bootstrap_components as dbc
 import pandas as pd
 from pandas_datareader import wb
