@@ -144,7 +144,7 @@ def update_graph(n_clicks, stored_dataframe, years_chosen, indct_chosen):
         dff = dff.reset_index()
 
         fig = px.choropleth(
-            dff,
+            data_frame=dff,
             locations="iso3c",
             color=indct_chosen,
             scope="world",
@@ -161,7 +161,7 @@ def update_graph(n_clicks, stored_dataframe, years_chosen, indct_chosen):
     if years_chosen[0] == years_chosen[1]:
         dff = dff[dff["year"].isin(years_chosen)]
         fig = px.choropleth(
-            dff,
+            data_frame=dff,
             locations="iso3c",
             color=indct_chosen,
             scope="world",
