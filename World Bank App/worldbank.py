@@ -1,8 +1,8 @@
-import dash  # Dash version==1.16.0 and Plotly version==4.10.0 
+import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-import plotly.express as px 
+import plotly.express as px
 import dash_bootstrap_components as dbc
 import pandas as pd
 from pandas_datareader import wb
@@ -28,8 +28,7 @@ countries = countries.rename(columns={"name": "country"})
 def update_wb_data():
     # Retrieve specific world bank data from API
     df = wb.download(
-        indicator=(list(indicators)), country=countries["iso3c"],
-        start=2005, end=2016
+        indicator=(list(indicators)), country=countries["iso3c"], start=2005, end=2016
     )
     df = df.reset_index()
     df.year = df.year.astype(int)
@@ -47,7 +46,7 @@ app.layout = dbc.Container(
                 [
                     html.H1(
                         "Comparison of World Bank Country Data",
-                        style={"textAlign": "center"}
+                        style={"textAlign": "center"},
                     ),
                     dcc.Graph(id="my-choropleth", figure={}),
                 ],
@@ -114,7 +113,7 @@ app.layout = dbc.Container(
                 ),
             ]
         ),
-        dcc.Store(id="storage", storage_type="local", data={}),
+        dcc.Store(id="storage", storage_type="session", data={}),
         dcc.Interval(id="timer", interval=1000 * 60, n_intervals=0),
     ]
 )
@@ -137,9 +136,7 @@ def update_graph(n_clicks, stored_dataframe, years_chosen, indct_chosen):
     dff = pd.DataFrame.from_records(stored_dataframe)
 
     if years_chosen[0] != years_chosen[1]:
-        years_range = range(years_chosen[0], years_chosen[1] + 1)
-        years_range = list(years_range)
-        dff = dff[dff["year"].isin(years_range)]
+        dff = dff[dff.year.between(years_chosen[0], years_chosen[1])]
         dff = dff.groupby(["iso3c", "country"])[indct_chosen].mean()
         dff = dff.reset_index()
 
@@ -149,8 +146,10 @@ def update_graph(n_clicks, stored_dataframe, years_chosen, indct_chosen):
             color=indct_chosen,
             scope="world",
             hover_data={"iso3c": False, "country": True},
-            labels={indicators["SG.GEN.PARL.ZS"]: "% parliament women",
-                    indicators["IT.NET.USER.ZS"]: "pop % using internet"},
+            labels={
+                indicators["SG.GEN.PARL.ZS"]: "% parliament women",
+                indicators["IT.NET.USER.ZS"]: "pop % using internet",
+            },
         )
         fig.update_layout(
             geo={"projection": {"type": "natural earth"}},
@@ -166,8 +165,10 @@ def update_graph(n_clicks, stored_dataframe, years_chosen, indct_chosen):
             color=indct_chosen,
             scope="world",
             hover_data={"iso3c": False, "country": True},
-            labels={indicators["SG.GEN.PARL.ZS"]: "% parliament women",
-                    indicators["IT.NET.USER.ZS"]: "pop % using internet"},
+            labels={
+                indicators["SG.GEN.PARL.ZS"]: "% parliament women",
+                indicators["IT.NET.USER.ZS"]: "pop % using internet",
+            },
         )
         fig.update_layout(
             geo={"projection": {"type": "natural earth"}},
