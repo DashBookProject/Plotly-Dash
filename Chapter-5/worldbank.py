@@ -12,7 +12,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 indicators = {
     "IT.NET.USER.ZS": "Individuals using the Internet (% of population)",
-    "SG.GEN.PARL.ZS": "Parliament seats % held by women",
+    "SG.GEN.PARL.ZS": "Proportion of seats held by women in national parliaments (%)",
     "EN.ATM.CO2E.KT": "CO2 emissions (kt)",
 }
 
