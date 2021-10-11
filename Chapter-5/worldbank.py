@@ -1,14 +1,11 @@
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output, State
+from dash import Dash, html, dcc, Input, Output, State
 import plotly.express as px
 import dash_bootstrap_components as dbc
 import pandas as pd
 from pandas_datareader import wb
 
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 indicators = {
     "IT.NET.USER.ZS": "Individuals using the Internet (% of population)",
@@ -58,14 +55,14 @@ app.layout = dbc.Container(
                 [
                     dbc.Label(
                         "Select Data Set:",
-                        className="font-weight-bold",
+                        className="fw-bold",
                         style={"textDecoration": "underline", "fontSize": 20},
                     ),
                     dcc.RadioItems(
                         id="radio-indicator",
                         options=[{"label": i, "value": i} for i in indicators.values()],
                         value=list(indicators.values())[0],
-                        inputClassName="mr-2",
+                        inputClassName="me-2",
                     ),
                 ],
                 width=4,
@@ -77,7 +74,7 @@ app.layout = dbc.Container(
                     [
                         dbc.Label(
                             "Select Years:",
-                            className="font-weight-bold",
+                            className="fw-bold",
                             style={"textDecoration": "underline", "fontSize": 20},
                         ),
                         dcc.RangeSlider(
@@ -134,6 +131,7 @@ def store_data(n_time):
 )
 def update_graph(n_clicks, stored_dataframe, years_chosen, indct_chosen):
     dff = pd.DataFrame.from_records(stored_dataframe)
+    print(years_chosen)
 
     if years_chosen[0] != years_chosen[1]:
         dff = dff[dff.year.between(years_chosen[0], years_chosen[1])]
