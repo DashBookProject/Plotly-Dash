@@ -1,5 +1,5 @@
 # import ipdb
-from dash import Dash, dcc, html, Input , Output
+from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 
 df = px.data.tips()
@@ -22,7 +22,7 @@ def update_graph(value):
     # ipdb.set_trace()
     dff = df[df.sex==value]
     dff = dff[dff.day=='Mon']
-    fig = px.bar(dff, x = 'time', y = 'total_bill')
+    fig = px.bar(dff, x='time', y='total_bill')
     my_graph = dcc.Graph(figure=fig)
 
     return my_graph
