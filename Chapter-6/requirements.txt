@@ -1,0 +1,6 @@
+dash>=2.0.0
+pandas
+dash-bootstrap-components>=1.0.0b3
+openpyxl
+
+

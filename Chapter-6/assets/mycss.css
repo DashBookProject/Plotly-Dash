@@ -1,0 +1,16 @@
+.dash-table-container .row {
+  display: block;
+  margin: 0;
+}
+
+.input-group-text {
+    width: 175px !important;
+}
+
+blockquote {
+    border-left: 4px var(--bs-primary) solid;
+    padding-left: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 0rem;
+}
