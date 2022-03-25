@@ -1,10 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash import Dash, dcc, html, Input, Output
 
 # Preparing your data for usage *******************************************
 
@@ -23,7 +20,7 @@ df = df.reset_index()
 # App Layout **************************************************************
 
 stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
-app = dash.Dash(__name__, external_stylesheets=stylesheets)
+app = Dash(__name__, external_stylesheets=stylesheets)
 
 app.layout = html.Div(
     [
