@@ -4,19 +4,24 @@ import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 import pandas as pd
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB, dbc.icons.FONT_AWESOME])
+app = Dash(
+    __name__,
+    external_stylesheets=[dbc.themes.SPACELAB, dbc.icons.FONT_AWESOME],
+)
 
 #  make dataframe from  spreadsheet:
-df = pd.read_excel("assets/historic.xlsx")
+df = pd.read_csv("assets/historic.csv")
 
 MAX_YR = df.Year.max()
 MIN_YR = df.Year.min()
 START_YR = 2007
 
 # since data is as of year end, need to add start year
-new_row = pd.DataFrame([[MIN_YR - 1, 0, 0, 0, 0, 0]], columns=df.columns)
-df = pd.concat([new_row, df]).reset_index(drop=True)
-
+df = (
+    df.append({"Year": MIN_YR - 1}, ignore_index=True)
+    .sort_values("Year", ignore_index=True)
+    .fillna(0)
+)
 
 COLORS = {
     "cash": "#3cb521",
@@ -43,7 +48,7 @@ asset_allocation_text = dcc.Markdown(
     """
 > **Asset allocation** is one of the main factors that drive portfolio risk and returns.   Play with the app and see for yourself!
 
-> Change the allocation to cash, bonds and stocks on the sliders and see how your portfolio performs over time in the graph.
+> Change the allocation to cash, bonds and stocks on the sliders and see how your portoflio performs over time in the graph.
   Try entering different time periods and dollar amounts too.
 """
 )
@@ -278,7 +283,10 @@ slider_card = dbc.Card(
             value=10,
             included=False,
         ),
-        html.H4("Then set stock allocation % ", className="card-title mt-3",),
+        html.H4(
+            "Then set stock allocation % ",
+            className="card-title mt-3",
+        ),
         html.Div("(The rest will be bonds)", className="card-title"),
         dcc.Slider(
             id="stock_bond",
@@ -326,7 +334,10 @@ time_period_data = [
 
 time_period_card = dbc.Card(
     [
-        html.H4("Or select a time period:", className="card-title",),
+        html.H4(
+            "Or select a time period:",
+            className="card-title",
+        ),
         dbc.RadioItems(
             id="time_period",
             options=[
@@ -398,10 +409,10 @@ rate_of_return = dbc.InputGroup(
             className="text-decoration-underline",
         ),
         dbc.Input(id="cagr", disabled=True, className="text-black"),
+        dbc.Tooltip(cagr_text, target="tooltip_target"),
     ],
     className="mb-3",
 )
-tooltip = dbc.Tooltip(cagr_text, target="tooltip_target")
 
 input_groups = html.Div(
     [start_amount, start_year, number_of_years, end_amount, rate_of_return],
@@ -431,7 +442,10 @@ data_source_card = dbc.Card(
 
 # ========= Learn Tab  Components
 learn_card = dbc.Card(
-    [dbc.CardHeader("An Introduction to Asset Allocation"), dbc.CardBody(learn_text)],
+    [
+        dbc.CardHeader("An Introduction to Asset Allocation"),
+        dbc.CardBody(learn_text),
+    ],
     className="mt-4",
 )
 
@@ -450,6 +464,7 @@ tabs = dbc.Tabs(
     ],
     id="tabs",
     active_tab="tab-2",
+    className="mt-2",
 )
 
 
@@ -528,7 +543,7 @@ def backtest(stocks, cash, start_bal, nper, start_yr):
 
 
 def cagr(dff):
-    """calculate Compound Annual Growth Rate for a series and returns a formatted string"""
+    """calculate Compound Annual Growth Rate for a series and returns a formated string"""
 
     start_bal = dff.iat[0]
     end_bal = dff.iat[-1]
@@ -538,7 +553,7 @@ def cagr(dff):
 
 
 def worst(dff, asset):
-    """calculate worst returns for asset in selected period returns formatted string"""
+    """calculate worst returns for asset in selected period returns formated string"""
 
     worst_yr_loss = min(dff[asset])
     worst_yr = dff.loc[dff[asset] == worst_yr_loss, "Year"].iloc[0]
@@ -691,7 +706,7 @@ def update_totals(stocks, cash, start_bal, planning_time, start_yr):
     # format ending balance
     ending_amount = f"${dff['Total'].iloc[-1]:0,.0f}"
 
-    # calculate cagr
+    # calcluate cagr
     ending_cagr = cagr(dff["Total"])
 
     return data, fig, summary_table, ending_amount, ending_cagr
