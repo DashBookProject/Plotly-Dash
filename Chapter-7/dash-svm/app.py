@@ -1,11 +1,8 @@
 import time
 import importlib
 
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import Dash, dcc, html, Input, Output, State
 import numpy as np
-from dash.dependencies import Input, Output, State
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn import datasets
@@ -14,7 +11,7 @@ from sklearn.svm import SVC
 import utils.dash_reusable_components as drc
 import utils.figures as figs
 
-app = dash.Dash(
+app = Dash(
     __name__,
     meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1.0"}
