@@ -48,7 +48,7 @@ asset_allocation_text = dcc.Markdown(
     """
 > **Asset allocation** is one of the main factors that drive portfolio risk and returns.   Play with the app and see for yourself!
 
-> Change the allocation to cash, bonds and stocks on the sliders and see how your portoflio performs over time in the graph.
+> Change the allocation to cash, bonds and stocks on the sliders and see how your portfolio performs over time in the graph.
   Try entering different time periods and dollar amounts too.
 """
 )
