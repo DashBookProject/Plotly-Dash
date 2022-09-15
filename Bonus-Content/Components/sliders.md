@@ -36,7 +36,7 @@ Rather than using keyword arguments for the `min`, `max` and `step`, you could u
 ```python
 slider = dcc.Slider(0, 20, 5, value=10)
 ```
-When using positional arguments, make sure you know the correct order (position) of each propery. You can use the [slider properties page](https://dash.plotly.com/dash-core-components/slider#slider-properties) in the Dash docs to see the order. Here's a print out 
+When using positional arguments, make sure you know the correct order (position) of each property. You can use the [slider properties page](https://dash.plotly.com/dash-core-components/slider#slider-properties) in the Dash docs to see the order. Here's a print out 
 
 > min (number; optional)...
 
@@ -50,7 +50,7 @@ When using positional arguments, make sure you know the correct order (position)
 
 ## Plotly Dash dcc.RangeSlider
 
-The `dcc.RangeSlider` component allows the user to select a range of values between the min and the max values. This is different than the slider where the min value is predefined by code and cannot be changed through user interaction in the dashboard.
+The `dcc.RangeSlider` component allows the user to select a range of values between the min and the max values. This is different from the slider where the min value is predefined by code and cannot be changed through user interaction in the dashboard.
 
 
 ![RangeSlider](https://user-images.githubusercontent.com/72614349/189491972-461baace-0adb-4955-8ced-0946a305bf90.png)
@@ -66,7 +66,7 @@ slider = dcc.RangeSlider(0, 20, 2, value=[6, 16])
 
 ![slider with a label](https://user-images.githubusercontent.com/72614349/189503968-33d14a4c-ebd7-4175-9a41-d974a52537a0.png)
 
-It's commonn to add a label with an `html.Div` component, however  if you use an `html.Label` (or `dbc.Label` with
+It's common to add a label with an `html.Div` component, however  if you use an `html.Label` (or `dbc.Label` with
 `dash-bootstrap-components`), there are several advantages:
 
 From [Mozilla mdn Web Docs:](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
@@ -78,7 +78,7 @@ From [Mozilla mdn Web Docs:](https://developer.mozilla.org/en-US/docs/Web/HTML/E
 > event is also raised for the input). That increased hit area for focusing the input provides an advantage to
 > anyone trying to activate it — including those using a touch-screen device.
 
-In the example below, note that the html.Label must include the `htmlFor` prop which uses the same id as the slider.  
+In the example below, note that the `html.Label` must include the `htmlFor` prop set to the same id as the slider.  
 
 ```python
 
