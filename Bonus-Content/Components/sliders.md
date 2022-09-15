@@ -53,11 +53,22 @@ slider = dcc.RangeSlider(0, 20, 2, value=[6, 16])
 
 ## Plotly Dash dcc.Slider with a Label
 
-You can add a label to the slider with an `html.Label` component.  
-
 
 ![slider with a label](https://user-images.githubusercontent.com/72614349/189503968-33d14a4c-ebd7-4175-9a41-d974a52537a0.png)
 
+It's commonn to add a label with an `html.Div` component, however  if you use an `html.Label` (or `dbc.Label` with
+`dash-bootstrap-components`), there are several advantages:
+
+From [Mozilla mdn Web Docs:](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
+
+> - The label text is not only visually associated with its corresponding text input; it is programmatically associated 
+> with it too. This means that, for example, a screen reader will read out the label when the user is focused on the form
+> input, making it easier for an assistive technology user to understand what data should be entered.
+> - When a user clicks or touches/taps a label, the browser passes the focus to its associated input (the resulting
+> event is also raised for the input). That increased hit area for focusing the input provides an advantage to
+> anyone trying to activate it — including those using a touch-screen device.
+
+In the example below, note that the html.Label must include the `htmlFor` prop which uses the same id as the slider.  
 
 ```python
 
@@ -71,20 +82,24 @@ slider = html.Div(
 
 ## Plotly Dash Sliders with Marks
 
-You can put labels - or marks along the slider rail. For example:
+You can put marks (ie labels) along the slider rail. For example:
 
 
 ![slider with marks](https://user-images.githubusercontent.com/72614349/189503727-cdb24672-2a37-45e0-8878-260fc7ff91a2.png)
 
 
+## Plotly Dash Sliders with Marks
 ```
 slider = dcc.Slider(
     1, 12, 3, value=6, marks={1: "Jan", 3: "Mar", 6: "Jun", 9: "Sep", 12: "Dec"}
 )
 ```
 
-This slider has the marks displayed on a 45-degree angle to make them more readable on small screens. You can
-customize each label with css using the `style` prop.
+## Plotly Dash Sliders with marks at an angle
+
+You can customize each mark with css using the `style` prop. This slider has the marks displayed on a 45-degree angle
+to make them more readable on small screens or narrow columns. See the dash docs for more examples of customizing
+and styling the marks.
 
 ![slider marks 45deg](https://user-images.githubusercontent.com/72614349/189503760-5c765dfa-c232-4852-bfbe-9a89075cd0e8.png)
 
@@ -105,10 +120,10 @@ slider = dcc.RangeSlider(1, 12, 1, value=[3, 9],
 
 ## Plotly Dash dcc.Slider with a Bootstrap theme
 
-If you are using a Bootstrap stylesheet, the components in `dash-core-components` such as the `dcc.Slider` do not
-automatically update the style based on the Bootstrap Theme.  However, one of the authors of "The Book of Dash"
-has developed a stylesheet that will update the `dcc` components with colors and fonts of your selected Bootstrap theme.
-Simply include this stylesheet and add `className="dbc"` to your app.  Here are some examples:
+If you are using `dash-bootstrap-components`, you will notice that Bootstrap theme is not automatically applied to 
+`dash-core-components` such as the `dcc.Slider`  However, a co-author of "The Book of Dash" has developed a stylesheet
+that will update the `dcc` components with colors and fonts of your selected Bootstrap theme. Simply include this
+stylesheet and add `className="dbc"` to your app.  Here are some examples:
 
 #### `dcc.Slider` with a Bootstrap Pulse Theme
 ![dcc.Slider with Pulse Theme](https://user-images.githubusercontent.com/72614349/189487800-a5e9688c-0337-4346-8f52-1216cb101bb9.png)
@@ -190,7 +205,7 @@ app = Dash(__name__)
 
 slider = html.Div(
     [
-        html.Label("Select Year"),
+        html.Label("Select Year", htmlFor="years"),
         dcc.Slider(
             min=years[0],
             max=years[-1],
