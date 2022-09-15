@@ -36,11 +36,21 @@ Rather than using keyword arguments for the `min`, `max` and `step`, you could u
 ```python
 slider = dcc.Slider(0, 20, 5, value=10)
 ```
+When using positional arguments, make sure you know the correct order (position) of each propery. You can use the [slider properties page](https://dash.plotly.com/dash-core-components/slider#slider-properties) in the Dash docs to see the order. Here's a print out 
 
+> min (number; optional)...
+
+> max (number; optional)...
+
+> step (number; optional)...
+
+> marks (dict; optional)...
+
+> value (number; optional)...
 
 ## Plotly Dash dcc.RangeSlider
 
-The `dcc.RangeSlider` component allows the user to select a range of values between the min and the max values.
+The `dcc.RangeSlider` component allows the user to select a range of values between the min and the max values. This is different than the slider where the min value is predefined by code and cannot be changed through user interaction in the dashboard.
 
 
 ![RangeSlider](https://user-images.githubusercontent.com/72614349/189491972-461baace-0adb-4955-8ced-0946a305bf90.png)
@@ -102,8 +112,11 @@ slider = dcc.RangeSlider(1, 12, 1, value=[3, 9],
 )
 ```
 
+---
 
-## Plotly Dash dcc.Slider with a Bootstrap theme
+# Style and Display of Slider
+
+## Styling Slider with Bootstrap Theme
 
 If you are using a Bootstrap stylesheet, the components in `dash-core-components` such as the `dcc.Slider` do not
 automatically update the style based on the Bootstrap Theme.  However, one of the authors of "The Book of Dash"
@@ -168,7 +181,7 @@ if __name__ == "__main__":
     app.run(debug=True)
 ```
 
-## Plotly Dash App - Updating a figure with a dcc.Slider
+# Plotly Dash App - Connecting Slider to Plotly figures
 
 In this app, a user can update the figure by selecting the year on the slider.  The callbacks make this app interactive.
 This example also shows how to use a tooltip to display the selected value of the slider.
