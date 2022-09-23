@@ -33,17 +33,16 @@ if __name__ == "__main__":
 
 ## Dash Bootstrap dbc.Button
 
-In the app above, the button is a simple html button with the default style.  Rather than customizing the style with css,
-this app uses a button from the `bootstrap-components` library.  You will see that the buttons are styled with fonts, 
-colors of the Bootstrap theme.  
+Rather than customizing the style with css, this app uses a button from the `bootstrap-components` library.  You will 
+see that the buttons are styled with fonts, colors and other design features of the Bootstrap theme.  
 
 Bootstrap uses a subset of all colors to create a smaller color palette for generating color schemes.  They these colors
-have the names "primary", "secondary", "success", "warning" and "danger".  Using the color pallet from the theme
+have the names "primary", "secondary", "success", "warning", "danger" and "info".  Using the color pallet from the theme
 makes it easy to create a beautiful app with a consistent design.  
 
-Note that we use the `className` prop to add margin to the button.  See the all the Bootstrap utility classes at the
-[Dash Bootstrap Cheatsheet](https://dashcheatsheet.pythonanywhere.com/) app. This handy cheatsheet is made by a co-author
-of "The Book of Dash".  
+Note that we use the `className` prop. The "me-1" adds margin so there is space between the buttons.  See the all the
+Bootstrap utility classes at the [Dash Bootstrap Cheatsheet](https://dashcheatsheet.pythonanywhere.com/) app. This handy
+cheatsheet is made by a co-author of "The Book of Dash".  
 
 
 ![button-bootstrap](https://user-images.githubusercontent.com/72614349/191816622-e70ac131-f0cd-44cc-9b3e-1c568a2dc654.png)
@@ -74,29 +73,38 @@ if __name__ == "__main__":
 ## Dash Bootstrap dbc.Buttons with dark and light themes
 
 You can change the theme of your app with one line of code, simply by changing the `external_stylesheets`. Here are the
-buttons with 4 of the 26 themes available in the dash-bootstrap-components library.  
+buttons with 4 of the 26 themes available in the `dash-bootstrap-components` library.  
 
 Learn more about designing your Dash app with a Bootstrap theme at the [Dash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/),
 a site made by a co-author of "The Book of Dash".
 
+Cybor theme:  
 
 ![button-cyborg](https://user-images.githubusercontent.com/72614349/191816623-d6dabbf4-0639-467a-a934-ca28b8f0b3c5.png)
 ```
 app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 ```
+-----------------
 
+Solar theme:  
 
 ![buttons-solar](https://user-images.githubusercontent.com/72614349/191816618-a7d4da0f-9caf-4b41-bf48-860eb5f6556f.png)
 ```
 app = Dash(__name__, external_stylesheets=[dbc.themes.SOLAR])
 ```
 
+---------
+
+Minty theme:  
+
 ![button-minty](https://user-images.githubusercontent.com/72614349/191816620-1c0708fd-de53-40c8-9bff-5db9d64d7dff.png)
 ```
 app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 ```
 
+------------
 
+Sketchy theme:  
 
 ![button-sketchy](https://user-images.githubusercontent.com/72614349/191816619-db7c9812-18d2-4d6e-9d34-51e0dabdee90.png)
 ```
@@ -172,7 +180,7 @@ if __name__ == "__main__":
 ## Dash Mantine dmc.Button
 
 This app uses a button from the `dash-mantine-components` library.  You will see that the buttons are styled with fonts and colors
-provided by the Mantine Themes.  As with the `dash-boostrap-components`, you can customize the style in many ways.
+and design from the Mantine Themes.  As with the `dash-boostrap-components`, you can customize the style in many ways.
 See the [Dash Mantine Components Documentation](https://www.dash-mantine-components.com/components/button) to see a lot more options.
 
 
@@ -207,7 +215,7 @@ if __name__ == "__main__":
 ## Plotly Dash App - Input and button side-by-side
 
 
-![button-input-side-by-side](https://user-images.githubusercontent.com/72614349/191829367-93971366-e6d6-4993-a3b5-8978f5fa951f.png)
+![button-input-side-by-side](https://user-images.githubusercontent.com/72614349/191951955-4d49a0f0-802d-45ec-9138-c285a56c9cb3.png)
 
 To pace the button next to the `dbc.Input`, use the `dbc.Row` and `dbc.Col` components.
 
@@ -283,8 +291,6 @@ if __name__ == "__main__":
 
 ### [Order Your Copy of "The Book of Dash" Today!](https://nostarch.com/book-dash)
 ![The Book Of Dash](https://user-images.githubusercontent.com/72614349/185497519-733bdfc3-5731-4419-9a68-44c1cad04a78.png)
-
-
 
 ### [Dash documentation - tutorial](https://dash.plotly.com/).  Getting Started with Dash
 
