@@ -1,14 +1,16 @@
 # Plotly Dash Button Components
 
-Welcome to the bonus content of "The Book of Dash".  Here you will find additional examples of Plotly Dash components,
-layouts and style.  To learn more about making dashboards with Plotly Dash, and how to buy your copy of
-"The Book of Dash", please see the reference section at the bottom of this article.
+### Welcome to the bonus content of "The Book of Dash".  :hugs:
 
-A Button is an element a user can click on to take action in an app such as submit a form or generate a report.
-This article will show the `html.Button` component from Plotly, and easy ways to style a button using the `dbc.Button` 
-from the `dash-bootstrap-components` library or the `dmc.Button` from the `dash-mantine-components` library.
+Here you will find additional examples of Plotly Dash components, layouts and style.  To learn more about making
+dashboards with Plotly Dash, and how to buy your copy of "The Book of Dash", please see the reference section
+at the bottom of this article.
 
-We will show you how to make the button interactive with callbacks, but first we will focus on the style.
+This article will focus on the `html.Button` component from Plotly, and easy ways to style a button using the `dbc.Button` 
+from the `dash-bootstrap-components` library or the `dmc.Button` from the `dash-mantine-components` library.  
+
+A Button is an element a user can click on to take action in an app such as submit a form or generate a report.We will 
+show you how to make the button interactive with callbacks, but first we will focus on the style.
 
 
 ## Plotly Dash html.Button
@@ -78,7 +80,7 @@ buttons with 4 of the 26 themes available in the `dash-bootstrap-components` lib
 Learn more about designing your Dash app with a Bootstrap theme at the [Dash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/),
 a site made by a co-author of "The Book of Dash".
 
-Cybor theme:  
+Cyborg theme:  
 
 ![button-cyborg](https://user-images.githubusercontent.com/72614349/191816623-d6dabbf4-0639-467a-a934-ca28b8f0b3c5.png)
 ```
@@ -251,7 +253,6 @@ if __name__ == "__main__":
 
 In this app, a user can submit a form by clicking on the button.  The callbacks make this app interactive.
 
-See more examples of interactive apps with buttons in the [Dash Example Index](https://dash-example-index.herokuapp.com/?code=button)
 
 ![button-form](https://user-images.githubusercontent.com/72614349/191821247-bcdb9001-a8d3-4bfb-b658-e091caed8601.gif)
 
@@ -287,10 +288,18 @@ if __name__ == "__main__":
     app.run_server(debug=True)
 
 ```
+
+## Plotly Dash Example Index
+
+See more examples of interactive apps with buttons in the [Dash Example Index](https://dash-example-index.herokuapp.com/?code=button)
+
+![Example Index](https://user-images.githubusercontent.com/72614349/192155573-39042b8f-0c54-479d-bd96-fa0eb3b96f06.png)
+
+
+
+
 ## Reference
 
-### [Order Your Copy of "The Book of Dash" Today!](https://nostarch.com/book-dash)
-![The Book Of Dash](https://user-images.githubusercontent.com/72614349/185497519-733bdfc3-5731-4419-9a68-44c1cad04a78.png)
 
 ### [Dash documentation - tutorial](https://dash.plotly.com/).  Getting Started with Dash
 
@@ -304,5 +313,23 @@ if __name__ == "__main__":
 
 ### [Dash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/). A guide for styling Plotly Dash apps with a Bootstrap theme
 
+
+## [Order Your Copy of "The Book of Dash" Today!](https://nostarch.com/book-dash)
+![The Book Of Dash](https://user-images.githubusercontent.com/72614349/185497519-733bdfc3-5731-4419-9a68-44c1cad04a78.png)
+
+### Authors
+
+__Ann Marie Ward__:
+
+👩‍💻 GitHub: https://github.com/AnnMarieW
+💬 Dash Forum: https://community.plotly.com/u/annmariew/summary
+
+__Adam Schroeder__:
+
+▶️ YouTube CharmingData: https://www.youtube.com/c/CharmingData
+
+__Chris Mayer__:
+
+🐍 Python + Crypto Email Academy: https://blog.finxter.com/subscribe/
 
 

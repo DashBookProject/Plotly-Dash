@@ -1,6 +1,8 @@
 # Plotly Dash Slider Components
 
-Welcome to the bonus content of "The Book of Dash".  Here you will find additional examples of Plotly Dash components,
+## Welcome to the bonus content of "The Book of Dash".   :hugs:
+
+Here you will find additional examples of Plotly Dash components,
 layouts and style.  To learn more about making dashboards with Plotly Dash, and how to buy your copy of
 "The Book of Dash", please see the reference section at the bottom of this article.
 
@@ -253,12 +255,16 @@ if __name__ == "__main__":
 
 ```
 
+
+## Plotly Dash Example Index
+
+See more examples of interactive apps in the [Dash Example Index](https://dash-example-index.herokuapp.com/)
+
+![Example Index](https://user-images.githubusercontent.com/72614349/192155573-39042b8f-0c54-479d-bd96-fa0eb3b96f06.png)
+
+
+
 ## Reference
-
-### [Order Your Copy of "The Book of Dash" Today!](https://nostarch.com/book-dash)
-![The Book Of Dash](https://user-images.githubusercontent.com/72614349/185497519-733bdfc3-5731-4419-9a68-44c1cad04a78.png)
-
-
 
 ### [Dash documentation - tutorial](https://dash.plotly.com/).  Getting Started with Dash
 
@@ -270,5 +276,24 @@ if __name__ == "__main__":
 
 ### [Dash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/). A guide for styling Plotly Dash apps with a Bootstrap theme
 
+
+
+## [Order Your Copy of "The Book of Dash" Today!](https://nostarch.com/book-dash)
+![The Book Of Dash](https://user-images.githubusercontent.com/72614349/185497519-733bdfc3-5731-4419-9a68-44c1cad04a78.png)
+
+### Authors
+
+__Ann Marie Ward__:
+
+👩‍💻 GitHub: https://github.com/AnnMarieW
+💬 Dash Forum: https://community.plotly.com/u/annmariew/summary
+
+__Adam Schroeder__:
+
+▶️ YouTube CharmingData: https://www.youtube.com/c/CharmingData
+
+__Chris Mayer__:
+
+🐍 Python + Crypto Email Academy: https://blog.finxter.com/subscribe/
 
 
