@@ -119,7 +119,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.SKETCHY])
 
 ## Dash Bootstrap dbc.Buttons with different styles
 
-Here are some of the options to customize the dbc.Button component.  See more examples ind the [Dash Boostrap Components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/)
+Here are some of the options to customize the dbc.Button component.  See more examples in the [Dash Boostrap Components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/)
 documentation.
 
 
@@ -153,10 +153,13 @@ if __name__ == "__main__":
 
 ## Dash Bootstrap dbc.Button with Icons
 
-You can add Bootstrap and/or Font Awesome icons to your Dash Bootstrap components.  Here is an example app:
+You can add Bootstrap and/or Font Awesome icons to your Dash Bootstrap components. To learn more, see the [Icons section](https://dash-bootstrap-components.opensource.faculty.ai/docs/icons/)
+of the dbc docs.
 
+Here is an example app:
 
-![buttons-icons](https://user-images.githubusercontent.com/72614349/191834250-2bf90e1c-d4c1-47f3-9009-424ee2e4f49c.png)
+![buttons-icons](https://user-images.githubusercontent.com/72614349/192217444-c5d7d1f9-ccaa-4c80-89e9-7b68cf52a8f7.png)
+
 
 ```python
 
@@ -166,10 +169,10 @@ import dash_bootstrap_components as dbc
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME, dbc.icons.BOOTSTRAP])
 
 FA_icon = html.I(className="fa-solid fa-cloud-arrow-down me-2")
-FA_button =  dbc.Button([FA_icon, "Submit"], className="me-2")
+FA_button =  dbc.Button([FA_icon, "Download"], className="me-2")
 
 BS_icon = html.I(className="bi bi-cloud-arrow-down-fill me-2")
-BS_button = dbc.Button([BS_icon, "Submit"])
+BS_button = dbc.Button([BS_icon, "Download"])
 
 app.layout = dbc.Container([FA_button, BS_button])
 
@@ -179,18 +182,57 @@ if __name__ == "__main__":
 ```
 
 
-## Dash Mantine dmc.Button
+
+## Dash Bootstrap dbc.Button with Dash Iconify
+
+Another way to add icons to Dash components is to use the [Dash Iconify.](https://www.dash-mantine-components.com/dash-iconify) library. 
+Dash Iconify gives you access to over 100,000 free icons.  Browse the icon sets [here](https://icon-sets.iconify.design/).  
+
+You can also specify the color, size, rotation, flip, style and more.  See the props available in [Dash Iconify GitHub.](https://github.com/snehilvj/dash-iconify) 
+
+You can find lots of examples of components with Dash Iconify in the `dash-mantine-coponents` [documentation](https://www.dash-mantine-components.com/),
+but you can also use these icons with any dash component, including `dash-bootstrap-components`. Here is an example:
+
+
+![dash-iconify](https://user-images.githubusercontent.com/72614349/192217095-556e216b-c738-4278-9afe-4c6c56d165e0.png)
+
+
+```python
+
+from dash import Dash
+import dash_bootstrap_components as dbc
+from dash_iconify import DashIconify
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+download_icon = DashIconify(icon="bi:cloud-download", style={"marginRight": 5})
+download_button =  dbc.Button([download_icon, "Download"], className="me-2")
+
+settings_icon = DashIconify(icon="carbon:settings-check", style={"marginRight": 5})
+settings_button = dbc.Button([settings_icon, "Settings"])
+
+app.layout = dbc.Container([download_button, settings_button])
+
+if __name__ == "__main__":
+    app.run_server(debug=True)
+
+```
+
+
+
+## Dash Mantine Components dmc.Button
 
 This app uses a button from the `dash-mantine-components` library.  You will see that the buttons are styled with fonts and colors
 and design from the Mantine Themes.  As with the `dash-boostrap-components`, you can customize the style in many ways.
 See the [Dash Mantine Components Documentation](https://www.dash-mantine-components.com/components/button) to see a lot more options.
 
+![dmcButton](https://user-images.githubusercontent.com/72614349/192216440-6e8a5101-3423-40ff-870c-35b9f35061e0.png)
 
-![dmcButton](https://user-images.githubusercontent.com/72614349/191838124-4ee5c13d-dd38-4ec7-9d2d-f332eb823159.png)
 
 ```python
 from dash import Dash
 import dash_mantine_components as dmc
+from dash_iconify import DashIconify
 
 app = Dash(__name__)
 
@@ -203,6 +245,8 @@ buttons = dmc.Group(
         dmc.Button("Outline", variant="outline"),
         dmc.Button("Radius- lg", radius="lg"),
         dmc.Button("Compact", compact=True),
+        dmc.Button("Icon", leftIcon=[DashIconify(icon="fluent:settings-32-regular")],
+        ),
     ]
 )
 
@@ -210,6 +254,7 @@ app.layout = dmc.Container(buttons)
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+
 
 ```
 
@@ -305,11 +350,13 @@ See more examples of interactive apps with buttons in the [Dash Example Index](h
 
 ### [Dash Example Index](https://dash-example-index.herokuapp.com/?code=button).  Sample apps with buttons
 
-### [Dash documentation - html.Button](https://dash.plotly.com/dash-html-components/button)
+### [Dash documentation](https://dash.plotly.com/dash-html-components/button). html.Button
 
-### [Dash Bootstrap Components documentation - Buttons](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/)
+### [Dash Bootstrap Components documentation](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/) - dbc.Button
 
-### [Dash Mantine Components Documentation - Buttons](https://www.dash-mantine-components.com/components/button)
+### [Dash Mantine Components Documentation](https://www.dash-mantine-components.com/components/button) - dmc.Button
+
+### [Dash Iconify](https://github.com/snehilvj/dash-iconify) - Adding Icons to Dash components
 
 ### [Dash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/). A guide for styling Plotly Dash apps with a Bootstrap theme
 
