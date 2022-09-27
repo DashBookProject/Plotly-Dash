@@ -7,9 +7,9 @@ dashboards with Plotly Dash, and how to buy your copy of "The Book of Dash", ple
 at the bottom of this article.
 
 This article will focus on the `html.Button` component from Plotly, and easy ways to style a button using the `dbc.Button` 
-from the `dash-bootstrap-components` library or the `dmc.Button` from the `dash-mantine-components` library.  
+from the dash-bootstrap-components library or the `dmc.Button` from the dash-mantine-components library.  
 
-A Button is an element a user can click on to take action in an app such as submit a form or generate a report.We will 
+A Button is an element a user can click on to take action in an app such as submit a form or generate a report. We will 
 show you how to make the button interactive with callbacks, but first we will focus on the style.
 
 
@@ -27,7 +27,7 @@ app = Dash(__name__)
 
 button = html.Button("Enter")
 
-app.layout = html.Div(button, style={"margin": 30})
+app.layout = html.Div(button)
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
 ## Dash Bootstrap dbc.Button
 
-Rather than customizing the style with css, this app uses a button from the `bootstrap-components` library.  You will 
+Rather than customizing the style with css, this app uses a button from the `Dash-bootstrap-components` library.  You will 
 see that the buttons are styled with fonts, colors and other design features of the Bootstrap theme.  
 
 Bootstrap uses a subset of all colors to create a smaller color palette for generating color schemes.  They these colors
@@ -134,7 +134,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 buttons = html.Div(
     [
         dbc.Button("Regular", className="me-1"),
-        dbc.Button("Outline", outline=True, color="primary", className="me-1" ),
+        dbc.Button("Outline", outline=True, color="primary", className="me-1"),
         dbc.Button("Disabled", disabled=True, className="me-1"),
         dbc.Button("Large", size="lg", className="me-1"),
         dbc.Button("Small", size="sm", className="me-1"),
@@ -185,7 +185,7 @@ if __name__ == "__main__":
 
 ## Dash Bootstrap dbc.Button with Dash Iconify
 
-Another way to add icons to Dash components is to use the [Dash Iconify.](https://www.dash-mantine-components.com/dash-iconify) library. 
+Another way to add icons to Dash components is to use the [Dash Iconify](https://www.dash-mantine-components.com/dash-iconify) library. 
 Dash Iconify gives you access to over 100,000 free icons.  Browse the icon sets [here](https://icon-sets.iconify.design/).  
 
 You can also specify the color, size, rotation, flip, style and more.  See the props available in [Dash Iconify GitHub.](https://github.com/snehilvj/dash-iconify) 
