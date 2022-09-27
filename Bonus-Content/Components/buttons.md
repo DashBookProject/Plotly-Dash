@@ -1,9 +1,9 @@
-# Plotly Dash Button Components
+_# Plotly Dash Button Components
 
 ### Welcome to the bonus content of "The Book of Dash".  :hugs:
 
 Here you will find additional examples of Plotly Dash components, layouts and style.  To learn more about making
-dashboards with Plotly Dash, and how to buy your copy of "The Book of Dash", please see the reference section
+dashboards with Plotly Dash, and how to buy your copy of ["The Book of Dash"](https://nostarch.com/book-dash), please see the reference section
 at the bottom of this article.
 
 This article will focus on the `html.Button` component from Plotly, and easy ways to style a button using the `dbc.Button` 
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
 ## Dash Bootstrap dbc.Button
 
-Rather than customizing the style with css, this app uses a button from the `Dash-bootstrap-components` library.  You will 
+Rather than customizing the style with css, this app uses a button from the `dash-bootstrap-components` library.  You will 
 see that the buttons are styled with fonts, colors and other design features of the Bootstrap theme.  
 
 Bootstrap uses a subset of all colors to create a smaller color palette for generating color schemes.  They these colors
@@ -377,6 +377,6 @@ __Adam Schroeder__:
 
 __Chris Mayer__:
 
-🐍 Python + Crypto Email Academy: https://blog.finxter.com/subscribe/
+🐍 Python + Crypto Email Academy: https://blog.finxter.com/subscribe/_
 
 
