@@ -1,4 +1,4 @@
-# Plotly Dash Button Components
+# Plotly Dash Bootstrap Card Components
 
 ### Welcome to the bonus content of "The Book of Dash".  :hugs:
 
