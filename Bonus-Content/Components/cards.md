@@ -6,7 +6,7 @@ Here you will find additional examples of Plotly Dash components, layouts and st
 dashboards with Plotly Dash, and how to buy your copy of ["The Book of Dash"](https://nostarch.com/book-dash), please see the reference section
 at the bottom of this article.
 
-This article will focus on the card components from the Dash Boostrap Component library. Using cards is a great way to 
+This article will focus on the Card components from the Dash Boostrap Component library. Using cards is a great way to 
 create eye-catching content.   We'll show you how to make the card content interactive with callbacks, but first we'll
 focus on the style and layout.
 
@@ -17,8 +17,7 @@ We'll start with the basics - a very simple Dash app to display a single card wi
 the complete reference for using Bootstrap cards in the Dash Boostrap Components [documentation.](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/)
 
 
-As you can see, this looks pretty dull. We'll show some ways to style the card to make it
-more appealing  -- and more importantly  -- to convey key information at a glance. 
+Next we'll show how to jazz it up to make it look better  -- and more importantly  -- so it conveys key information at a glance. 
 
 ![simple card](https://user-images.githubusercontent.com/72614349/193452367-c222b23b-5e11-4398-a150-2c3f9df72ad3.png)
 
@@ -78,27 +77,23 @@ You can add Bootstrap and/or Font Awesome icons to your Dash Bootstrap component
 [Icons](https://dash-bootstrap-components.opensource.faculty.ai/docs/icons/) section of the dash-bootstrap-components
 documentation.  You can also find more information about adding icons to dash components in the buttons article.
 
-Here is an example:
+In this example, we also change the background color using the Bootstrap utility class `bg-primary`.
 
 
-![card-with-icons](https://user-images.githubusercontent.com/72614349/193455195-757409b5-4568-48e2-afa4-e8745ebfd763.png)
+![card-with-icons](https://user-images.githubusercontent.com/72614349/195423112-8f1ed8ab-9c99-4219-99c2-9f70df3a4f14.png)
 
 ```python
 card = dbc.Card(
     dbc.CardBody(
         [
             html.H1([html.I(className="bi bi-bank me-2"), "Profit"]),
-            html.H3("$8.3M", className="text-success"),
-            html.Div(
-                [
-                    html.I("10.3%", className="bi bi-caret-up-fill text-success"),
-                    " vs LY",
-                ]
-            ),
+            html.H3("$8.3M"),
+            html.H4(html.I("10.3% vs LY", className="bi bi-caret-up-fill text-success")),
         ],
     ),
-    className="text-center m-4",
+    className="text-center m-4 bg-primary text-white",
 )
+
 ```
 
 ## Dash Bootstrap Cards Side-by-Side 
@@ -370,7 +365,7 @@ See this Plotly Dash app live:  https://jwt.pythonanywhere.com/
 ## Plotly Dash App with Live Updates
 
 This app shows live updates of crypto prices.  We use a `dcc.Interval` component to fetch the data from CoinGecko every 
-30 seconds.  The CoinGecko API is easy to use because you don't need an API key,  and it's
+6 seconds.  The CoinGecko API is easy to use because you don't need an API key,  and it's
 free if you keep the number of updates within the free tier limits.   We pull the current price, 24 hour price change 
 and the coin logo from the data feed and display the data in a nicely styled card.   
 
@@ -378,80 +373,88 @@ In this app we introduce callbacks to update the data, and show how to get the d
 has been covered in previous examples.   Note that in this app, the color of the text and the up and down arrows are updated
 dynamically based on the data in the `make_card` function.
 
-
-![live crypto prices](https://user-images.githubusercontent.com/72614349/194634151-d3de67d4-99bb-4997-87fd-7235eef24dfa.png)
-
+![live_crypto_prices](https://user-images.githubusercontent.com/72614349/195419638-7214c1d2-deb7-4697-b1b4-4c064cf6af8a.png)
 
 ```python
-
+import dash
 from dash import Dash, dcc, html, Input, Output
 import dash_bootstrap_components as dbc
 import requests
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.SUPERHERO, dbc.icons.BOOTSTRAP])
+
+coins = ["bitcoin", "ethereum", "binancecoin", "ripple"]
+interval = 6000 # update frequency - adjust to keep within free tier
+api_url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd"
 
 
-def get_data(coin):
+def get_data():
     try:
-        api_url = (
-            f"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids={coin}"
-        )
-        response = requests.get(api_url)
-        response_json = response.json()
-        return (
-            response_json[0]["name"],
-            response_json[0]["image"],
-            response_json[0]["current_price"],
-            response_json[0]["price_change_percentage_24h"],
-        )
-    except:
-        return None, None, 0, 0
+        response = requests.get(api_url, timeout=1)
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(e)
 
 
-def make_card(coin, img, price, change):
-    color = "text-danger" if change < 0 else "text-success"
+def make_card(coin):
+    change = coin["price_change_percentage_24h"]
+    price = coin["current_price"]
+    color = "danger" if change < 0 else "success"
     icon = "bi bi-arrow-down" if change < 0 else "bi bi-arrow-up"
     return dbc.Card(
-        [
-            html.H3([html.Img(src=img, height=35, className="me-1"), coin]),
-            html.H4(f"${price:,}"),
-            html.Div(
-                [f"{round(change, 2)}%", html.I(className=icon), " 24hr"],
-                className=color,
-            ),
-        ],
-        className="text-center text-nowrap",
+        html.Div(
+            [
+                html.H4(
+                    [
+                        html.Img(src=coin["image"], height=35, className="me-1"),
+                        coin["name"],
+                    ]
+                ),
+                html.H4(f"${price:,}"),
+                html.H5(
+                    [f"{round(change, 2)}%", html.I(className=icon), " 24hr"],
+                    className=f"text-{color}",
+                ),
+            ],
+            className=f"border-{color} border-start border-5",
+        ),
+        className="text-center text-nowrap my-2 p-2",
     )
 
 
-coins = ["bitcoin", "ethereum", "binancecoin", "ripple"]
 mention = html.A(
     "Data from CoinGecko", href="https://www.coingecko.com/en/api", className="small"
 )
-interval = dcc.Interval(interval=30000)  # update every 30 seconds
+interval = dcc.Interval(interval=interval)
 cards = html.Div()
-
-app.layout = dbc.Container([interval, cards, mention])
+app.layout = dbc.Container([interval, cards, mention], className="my-5")
 
 
 @app.callback(Output(cards, "children"), Input(interval, "n_intervals"))
 def update_cards(_):
+    coin_data = get_data()
+    if coin_data is None or type(coin_data) is dict:
+        return dash.no_update
+    
     # make a list of cards with updated prices
     coin_cards = []
-    for coin in coins:
-        name, image, price, change = get_data(coin)
-        if name:
-            coin_cards.append(make_card(name, image, price, change))
+    updated = None
+    for coin in coin_data:
+        if coin["id"] in coins:
+            updated = coin.get("last_updated")
+            coin_cards.append(make_card(coin))
 
     # make the card layout
-    card_layout = dbc.Row(
-        [dbc.Col(card, md=3, class_name="my-2",) for card in coin_cards]
-    )
+    card_layout = [
+        dbc.Row([dbc.Col(card, md=3) for card in coin_cards]),
+        dbc.Row(dbc.Col(f"Last Updated {updated}")),
+    ]
     return card_layout
 
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+
 
 ```
 
