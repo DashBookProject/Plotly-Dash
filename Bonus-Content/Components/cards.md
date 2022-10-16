@@ -333,8 +333,9 @@ card = dbc.Card(
             html.H2("James Webb Space Telescope"),
             html.H3("First Images"),
             html.P(
-                "Learn how to make an app to compare before and after images of Hubble vs Webb with ~40 lines of Python",
-                style={"marginTop":200}
+                "Learn how to make an app to compare before and after images of Hubble vs Webb with ~40 lines of Python",                
+                style={"marginTop":175},
+                className="small",
 
             ),
             dbc.Button("See the App", href="https://jwt.pythonanywhere.com/"),
