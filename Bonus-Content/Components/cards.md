@@ -7,14 +7,14 @@ dashboards with Plotly Dash, and how to buy your copy of ["The Book of Dash"](ht
 at the bottom of this article.
 
 This article will focus on the Card components from the Dash Boostrap Component library. Using cards is a great way to 
-create eye-catching content.   We'll show you how to make the card content interactive with callbacks, but first we'll
+create eye-catching content. We'll show you how to make the card content interactive with callbacks, but first we'll
 focus on the style and layout.
 
 
 ## Plotly Dash app with a Bootstrap Card 
 
-We'll start with the basics - a very simple Dash app to display a single card without any additional styling. Be sure to check out 
-the complete reference for using Bootstrap cards in the Dash Boostrap Components [documentation.](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/)
+We'll start with the basics - a minimal Dash app to display a single card without any additional styling. Be sure to check out 
+the complete reference for [using Dash Bootstrap cards.](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/)
 
 
 Next we'll show how to jazz it up to make it look better  -- and more importantly  -- so it conveys key information at a glance. 
@@ -48,8 +48,6 @@ An easy way to style content is by using Boostrap utility classes.  See the all 
 classes at the [Dash Bootstrap Cheatsheet](https://dashcheatsheet.pythonanywhere.com/) app. This handy cheatsheet is
 made by a co-author of “The Book of Dash”.
 
-Feel free to watch Adam’s explainer [video](https://www.youtube.com/watch?v=vqVwpL4bGKY&t=16s) on Bootstrap and styling 
-your app if you need to get up to speed! 
 
 In this card we center the text and change the color with "text-center" and "text-success". The Bootstrap themes have 
 named colors and "success" is a shade of green. For more information about styling your app with a Boostrap theme, see [Dash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/)
@@ -71,13 +69,12 @@ card =  dbc.Card(
 )
 ```
 
+Feel free to watch Adam’s explainer [video](https://www.youtube.com/watch?v=vqVwpL4bGKY&t=16s) on Bootstrap and styling 
+your app if you need to get up to speed! 
+
 ## Dash Bootstrap Card with Icons
 
-You can add Bootstrap and/or Font Awesome icons to your Dash Bootstrap components. To learn more, see the 
-[Icons](https://dash-bootstrap-components.opensource.faculty.ai/docs/icons/) section of the dash-bootstrap-components
-documentation.  You can also find more information about adding icons to dash components in the buttons article.
-
-In this example, we also change the background color using the Bootstrap utility class `bg-primary`.
+You can add Bootstrap and/or Font Awesome icons to your Dash Bootstrap components. In this example, we will add the bank icon as well as change the background color using the Bootstrap utility class `bg-primary`.
 
 
 ![card-with-icons](https://user-images.githubusercontent.com/72614349/195423112-8f1ed8ab-9c99-4219-99c2-9f70df3a4f14.png)
@@ -96,6 +93,11 @@ card = dbc.Card(
 
 ```
 
+To learn more, see the 
+[Icons](https://dash-bootstrap-components.opensource.faculty.ai/docs/icons/) section of the dash-bootstrap-components
+documentation.  You can also find more information about adding icons to dash components in the [buttons article](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/Components/buttons.md#dash-bootstrap-dbcbutton-with-icons).
+
+
 ## Dash Bootstrap Cards Side-by-Side 
 
 In business intelligence dashboards, it's common to highlight KPIs or Key Performance Indicators in a group of cards.  You can find many
@@ -105,7 +107,7 @@ This app places three KPI cards side-by-side.  We use the `dbc.Row` and `dbc.Col
 card layout.  When you run this app, try changing the width of the browser window to see how the cards expand 
 to fill the row based on the screen size. 
 
-This app also demonstrates using Bootstrap `border` utility classes to add and style a border.  Here we add a border on the left
+This app also demonstrates the usage of Bootstrap `border` utility classes to add and style a border.  Here we add a border on the left
  and change the color to highlight the results.  Another trick is to use the "text-nowrap" class to keep the icon
 and the text together on the same line when the cards shrink to accommodate small screen sizes.
 
@@ -183,7 +185,7 @@ if __name__ == "__main__":
 
 ## Creating Dash Bootstrap Cards in a Loop
 
-In the previous example, notice that a lot of the code for the creating the card is the same.  To reduce the amount of 
+In the previous example, notice that a lot of the code for creating the card is the same.  To reduce the amount of 
 repetitive code, let's create cards in a function.  
 
 In this app, we introduce the `dbc.CardHeader` component and the `"shadow"` class to style the card.  We'll show you how
@@ -283,7 +285,7 @@ card = dbc.Card(
             dbc.CardLink(
                 [
                     html.Img(src=plotly_logo_dark, height=65),
-                    html.Span( "Plotly Job Openings", className="ms-2")
+                    html.Span("Plotly Job Openings", className="ms-2")
                 ],
                 className="text-decoration-none h2",
                 href="https://plotly.com/careers/"
@@ -310,7 +312,7 @@ if __name__ == "__main__":
 
 This app puts the image in the background and uses the `dbc.CardImgOverlay` component to place content on top of the
 image.  We also use `dbc.Button`s to link to other sites for more information.  See the buttons article for more information.
-Be sure run the app and check out the links.  The Webb Telescope app is pretty cool!
+Be sure to run the app and check out the links.  The Webb Telescope app is pretty cool!
 
 
 
