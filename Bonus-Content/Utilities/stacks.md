@@ -147,6 +147,15 @@ stack = html.Div(
 )
 
 ```
+
+## Dash Bootstrap Theme Explorer
+
+You can also find more details and examples in the Dash Bootstrap Theme Explorer [Bootstrap Utility Classes Secion](https://hellodash.pythonanywhere.com/adding-themes/bootstrap-utility-classes)
+You will be able to try out different utility classes in a live demo.  Here's an example!
+
+![ulilites live demo](https://user-images.githubusercontent.com/72614349/197416744-9b57ce8d-f300-4497-a532-78e02aa6e5a1.gif)
+
+
 ## Plotly Dash Example Index
 
 See more examples of Bootstrap utility classes live!  Check out the interactive example apps in the [Dash Example Index](https://dash-example-index.herokuapp.com)
