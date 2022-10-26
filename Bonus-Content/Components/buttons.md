@@ -1,4 +1,4 @@
-_# Plotly Dash Button Components
+# Plotly Dash Button Components
 
 ### Welcome to the bonus content of "The Book of Dash".  :hugs:
 
