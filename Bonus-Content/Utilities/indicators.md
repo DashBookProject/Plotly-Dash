@@ -264,9 +264,8 @@ indicator = dbc.Button(
 ####  Styling Other Components with Position Utilities
 
 The position utilities are not just for indicator components.  Here we use it to jazz up a `dbc.Card` component.
-Learn more about Dash Bootstrap Card components in the cards article.  
+Learn more about Dash Bootstrap Card components in the [cards article.](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/Components/cards.md)  
 
-todo add link ^^
 
 ![card](https://user-images.githubusercontent.com/72614349/203175770-2ecd2a2d-d2fe-4c03-bb0c-d91e9b365fa5.png)
 

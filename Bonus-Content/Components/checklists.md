@@ -8,9 +8,8 @@ at the bottom of this article.
 
 This article will focus on the `dcc.Checklist` component from Plotly, and the `dbc.Checklist` from the `dash-bootstrap-components` library.
 
-The Checklist component renders a set of checkboxes to allow the user to select one or more items.  If you have a checklist
-with many options, it's better to use the Dropdown component.  See the Dropdown article for more information. 
-We'll show you how to make an app with a checklist interactive with callbacks, but first let's look at ways to style the checklist.
+The Checklist component renders a set of checkboxes to allow the user to select one or more items.   We'll show you how
+to make an app with a checklist interactive with callbacks, but first let's look at ways to style the checklist.
 
 
 ## Plotly Dash dcc.Checklist
@@ -24,7 +23,7 @@ from dash import Dash, dcc, html
 
 app = Dash(__name__)
 
-checklist = dcc.Checklist(optons=["Apple",  "Facebook", "Google"], value=["Facebook"])
+checklist = dcc.Checklist(options=["Apple",  "Facebook", "Google"], value=["Facebook"])
 
 app.layout = html.Div(checklist)
 
@@ -134,7 +133,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 ## dcc.Checklist with Icons
 
 You can add icons to the checklist label with the [Dash Iconify](https://www.dash-mantine-components.com/dash-iconify) library. You 
-can also specify the color, size, rotation, flip, style and more.  See the props available in [Dash Iconify GitHub.](https://github.com/snehilvj/dash-iconify) 
+can also specify the color, size, rotation, flip, style and more.  See the props available in [Dash Iconify GitHub.](https://github.com/snehilvj/dash-iconify#keyword-arguments) 
 
 Dash Iconify gives you access to over 100,000 free icons.  Browse the icon sets [here](https://icon-sets.iconify.design/).  
 
@@ -323,7 +322,7 @@ if __name__ == "__main__":
 
 ```
 
-# Plotly Dash App styling with Bootstrap utility classes.
+## Plotly Dash App styling with Bootstrap utility classes
 
 The app above is styled with Bootstrap utility classes.     Bootstrap includes dozens of utility classes for showing, 
 hiding, aligning, spacing and styling content. See all the Bootstrap classes in the [Dash Bootstrap Cheatsheet](https://dashcheatsheet.pythonanywhere.com/).  
