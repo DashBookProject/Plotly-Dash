@@ -245,7 +245,8 @@ size of the indicator. `"bg-danger"` sets the color to the Bootstrap named theme
 "rounded-circle" sets the shape.  
 
 When you run this example, try changing the indicator size by using a different padding.  The numbers range from `"p-1"` to `"p-5"`.
-Or try changing the color to one of the other named theme colors like `"bg-info"` or `"bg-secondary"`
+Or try changing the color to one of the other named theme colors like `"bg-info"` or `"bg-secondary"`.  
+
 ![indicator-circle](https://user-images.githubusercontent.com/72614349/203175473-7e91ddb6-efbe-43f6-9ab5-615184dfe47d.png)
 
 ```python
