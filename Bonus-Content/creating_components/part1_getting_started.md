@@ -1,5 +1,7 @@
 # Writing Custom Components
 
+> This article is an updated version of the [Creating Your Own Componets](https://dash.plotly.com/react-for-python-developers) section of the official Dash Documentation.
+
 ## Getting Started
 
 

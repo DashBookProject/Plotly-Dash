@@ -1,8 +1,9 @@
 
 ## Example 1 Before and After Image slider - Convert an *Existing* React Component to Dash
 
-This example demonstrates how to make a Dash interface to [react-before-after-slider](https://www.npmjs.com/package/react-before-after-slider) which is a component to show differences in an image like this:
-![BeforeAfter|610x419, 75%](upload://llizuZLlWcJ7ggJvzt1rA4aPN5D.gif)
+This example demonstrates how to make a Dash interface to [react-before-after-slider](https://www.npmjs.com/package/react-before-after-slider) which is a component to show differences in an image like at this site:
+
+https://jwt.pythonanywhere.com/
 
 
  Before creating your own  component,  it's always good to see if a Dash community member has already done so.  In this case, we're in luck because  you can find this component, along with several others in @Emil's [dash-extensions](https://github.com/thedirtyfew/dash-extensions/tree/master/src/lib/components) library.  You can also search the [show-and-tell](https://community.plotly.com/tag/show-and-tell) section on the Dash forum,  and the [Dash Community Components](https://plotly.com/dash-community-components/) section in the Dash documentation.  
