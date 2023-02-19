@@ -31,7 +31,7 @@ The dash-component-boilerplate creates a class component.  To see how to convert
 3. To see examples of converting Dash components from classes to functions, check out the [dash-bootstrap-components](https://github.com/facultyai/dash-bootstrap-components/tree/main/src/components) library. The components were refactored to use functions and hooks in 2020.  If you look at the git history, you can see the before and after and it makes it really easy to see how to make the components both ways. See for example the conversion for the [dbc.Alert component.](https://github.com/facultyai/dash-bootstrap-components/commit/728f1d5fa4ae78e0f8e23dd4c96fee545583cef8#diff-41547f5f675317d6e063e7cfe0b6c83c35326130c21b7de0de6216ac03a31488)
 
 
-### Start Over at [Part 1 Getting Started]()
+### Start Over at [Part 1 Getting Started](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part1_getting_started.md#writing-custom-dash-components)
 
 
 

@@ -319,4 +319,4 @@ Try  this process by making some small changes to `MyComponent.react.js`, such a
 
 Now that you understand the structure of a Dash component project, when  you go to component libraries on Github, such as `dash-core-components` it should look familiar to you.  You can use these libraries to see more examples of how to make components and how to create tests. 
 
-Next, we will show several examples of how to make custom components.
+### Up Next [Part 3 Conventions and Common Patterns](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part3_conventions_and_common_patterns.md#part-3-conventions--common-patterns)

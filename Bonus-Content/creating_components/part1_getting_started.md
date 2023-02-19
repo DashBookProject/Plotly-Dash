@@ -3,11 +3,11 @@
 > This article is an updated version of the [Creating Your Own Components](https://dash.plotly.com/react-for-python-developers) section of the official Dash Documentation.
 
 ### Table of Contents
-1.  [Part 1 Getting Started]()
-2. [Part 2 Architecture Overview]()
-3. [Part 3 Conventions and Common Patterns]()
-4. [Part 4 Examples]()
-5. [Part 5 Tips & Tricks]()
+1.  [Part 1 Getting Started](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part1_getting_started.md#writing-custom-dash-components)
+2. [Part 2 Architecture Overview](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part2_architecture_overview.md)
+3. [Part 3 Conventions and Common Patterns](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part3_conventions_and_common_patterns.md#part-3-conventions--common-patterns)
+4. [Part 4 Examples](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part4_example1.md#part-4-examples)
+5. [Part 5 Tips & Tricks](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part5_tips_and_tricks.md#part-5-tips--tricks)
 
 
 ## Part 1 Getting Started
@@ -67,3 +67,4 @@ c. Verify that node is installed by running: `node -v` . Verify that npm is inst
 
 Next, we will create a custom Dash component using the `dash-component-boilerplate` library. We will follow the instructions for setting up a React development environment, complete with the necessary scripts for building our React component for Dash. Let’s get started!
 
+### Up Next  [Part 2 Architecture Overview](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part2_architecture_overview.md)

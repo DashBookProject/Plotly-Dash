@@ -64,3 +64,6 @@ However, avoid `value` if it would be ambiguous. For example, in `dcc.DatePicker
 
 - Separate Props - n_clicks vs n_blur
 - Or  "update_mode" that determines when e.g. `value` is updated
+
+
+### Up Next [Part 4 Examples](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part4_example1.md#part-4-examples)

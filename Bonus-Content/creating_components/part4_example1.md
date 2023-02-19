@@ -169,3 +169,7 @@ app.layout = html.Div(custom_components.BeforeAfter(before=image1, after=image2)
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+
+```
+
+### Up Next [Part 5 Tips & Tricks](https://github.com/DashBookProject/Plotly-Dash/blob/master/Bonus-Content/creating_components/part5_tips_and_tricks.md#part-5-tips--tricks)
