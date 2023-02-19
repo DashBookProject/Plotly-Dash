@@ -1,6 +1,6 @@
-### Conventions & Common Patterns
+## Part 3 Conventions & Common Patterns
 
-#### Naming Conventions
+### Naming Conventions
 
 Using a consistent naming convention across the community makes the developer experience more predictable and enjoyable. Here are our conventions:
 
@@ -34,7 +34,7 @@ Exception being component libraries where we *rely* on the JavaScript component'
 
 **Convert `camelCase` to `snake_case` within React**
 
-If the component library uses `camelCase` but doesn’t have an insurmountable API, then use convert `camelCase` to `snake_case` within the component itself and redocument all of the properties in the Dash docs. Example being [`dcc.DatePicker`](https://dash.plotly.com/dash-core-components/datepickersingle). The user doesn’t need to know that we’re using `react-dates` under the hood and we don’t need to refer to `react-dates` ’s documentation. It’s easy for us to re-document.
+If the component library uses `camelCase` but does not have an insurmountable API, then use convert `camelCase` to `snake_case` within the component itself and redocument all of the properties in the Dash docs. Example being [`dcc.DatePicker`](https://dash.plotly.com/dash-core-components/datepickersingle). The user does not need to know that we’re using `react-dates` under the hood and we don’t need to refer to `react-dates` ’s documentation. It’s easy for us to re-document.
 
 **Considerations for Dash .NET**
 

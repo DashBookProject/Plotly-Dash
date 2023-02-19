@@ -1,8 +1,16 @@
-# Writing Custom Components
+# Writing Custom Dash Components
 
-> This article is an updated version of the [Creating Your Own Componets](https://dash.plotly.com/react-for-python-developers) section of the official Dash Documentation.
+> This article is an updated version of the [Creating Your Own Components](https://dash.plotly.com/react-for-python-developers) section of the official Dash Documentation.
 
-## Getting Started
+### Table of Contents
+1.  [Part 1 Getting Started]()
+2. [Part 2 Architecture Overview]()
+3. [Part 3 Conventions and Common Patterns]()
+4. [Part 4 Examples]()
+5. [Part 5 Tips & Tricks]()
+
+
+## Part 1 Getting Started
 
 
 ### If You’re Experienced with React
@@ -58,3 +66,4 @@ b. [How to install Node.js on Mac OS (fosstechnix.com)](https://www.fosstechnix.
 c. Verify that node is installed by running: `node -v` . Verify that npm is installed by running: `npm -v`
 
 Next, we will create a custom Dash component using the `dash-component-boilerplate` library. We will follow the instructions for setting up a React development environment, complete with the necessary scripts for building our React component for Dash. Let’s get started!
+

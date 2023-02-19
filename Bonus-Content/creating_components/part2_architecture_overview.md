@@ -1,4 +1,4 @@
-## Architecture Overview
+## Part 2 Architecture Overview
 
 **Dash Component Boilerplate**
 

@@ -1,5 +1,7 @@
 
-## Example 1 Before and After Image slider - Convert an *Existing* React Component to Dash
+## Part 4 Examples
+
+### Example 1 Before and After Image slider - Convert an *Existing* React Component to Dash
 
 This example demonstrates how to make a Dash interface to [react-before-after-slider](https://www.npmjs.com/package/react-before-after-slider) which is a component to show differences in an image like at this site:
 
@@ -30,7 +32,7 @@ This component is very simple to use with Dash because the slider functionality 
 
 **Install**
 
-First, install `react-before-after-slider`  according to the instructions.  This is similar to doing `pip install` with a python module.  From the root directory of the project you created with the [dash-compnent-boilerplate](https://github.com/plotly/dash-component-boilerplate):
+First, install `react-before-after-slider`  according to the instructions.  This is similar to doing `pip install` with a python module.  From the root directory of the project you created with the [dash-component-boilerplate](https://github.com/plotly/dash-component-boilerplate):
 
 ```
 $ npm install --save react-before-after-slider
