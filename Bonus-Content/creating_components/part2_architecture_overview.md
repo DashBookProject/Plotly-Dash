@@ -279,7 +279,9 @@ Notice that it imports our new library with `import custom_components` and adds 
 
 Before making any changes to any of the files, run this `usage.py` file.  Open the browser as usual with any Dash app, and if you see the following you will know that everything is set up correctly and you have created your first custom Dash component. 
 
-![image|547x240, 75%](upload://9zvqIQ46DcsdZaBB3p00Lhbzcaw.png)
+
+![image](https://user-images.githubusercontent.com/72614349/219983739-3b670208-a5e7-4e9e-808e-55615d6b6eb6.png)
+
 
 **Tests**
 
