@@ -7,6 +7,7 @@ This example demonstrates how to make a Dash interface to [react-before-after-sl
 
 https://jwt.pythonanywhere.com/
 
+![webb](https://user-images.githubusercontent.com/72614349/179326884-a9a01fef-6f64-4de0-a40f-b206f3a99ff8.gif)
 
  Before creating your own  component,  it's always good to see if a Dash community member has already done so.  In this case, we're in luck because  you can find this component, along with several others in @Emil's [dash-extensions](https://github.com/thedirtyfew/dash-extensions/tree/master/src/lib/components) library.  You can also search the [show-and-tell](https://community.plotly.com/tag/show-and-tell) section on the Dash forum,  and the [Dash Community Components](https://plotly.com/dash-community-components/) section in the Dash documentation.  
 
