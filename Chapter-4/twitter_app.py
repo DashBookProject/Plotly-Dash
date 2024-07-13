@@ -7,7 +7,7 @@ from dash import Dash, dcc, html, Input, Output
 
 df = pd.read_csv("tweets.csv")
 df["name"] = pd.Series(df["name"]).str.lower()
-df["date_time"] = pd.to_datetime(df["date_time"])
+df["date_time"] = pd.to_datetime(df["date_time"], dayfirst=True)
 df = (
     df.groupby([df["date_time"].dt.date, "name"])[
         ["number_of_likes", "number_of_shares"]
