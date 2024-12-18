@@ -17,11 +17,10 @@ MIN_YR = df.Year.min()
 START_YR = 2007
 
 # since data is as of year end, need to add start year
-df = (
-    df.append({"Year": MIN_YR - 1}, ignore_index=True)
-    .sort_values("Year", ignore_index=True)
-    .fillna(0)
-)
+df = pd.concat([
+    df,
+    pd.DataFrame({"Year": [MIN_YR - 1]})
+], ignore_index=True).sort_values("Year", ignore_index=True).fillna(0)
 
 COLORS = {
     "cash": "#3cb521",
